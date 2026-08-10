@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>100xdeporte</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+            color: #172033;
+        }
+
+        header {
+            background: #075985;
+            color: white;
+            padding: 20px;
+        }
+
+        .header {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #7dd3fc;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0284c7, #0c4a6e);
+            color: white;
+            padding: 55px 20px;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .title {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .sports {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .sport {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .matches {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .match {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .league {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .score {
+            font-size: 25px;
+            color: #0284c7;
+        }
+
+        .live {
+            display: inline-block;
+            background: #dc2626;
+            color: white;
+            padding: 5px 9px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        footer {
+            margin-top: 50px;
+            background: #0c4a6e;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 700px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 7px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .sports {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .matches {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header">
+        <div class="logo">100x<span>deporte</span></div>
+
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Resultados</a>
+            <a href="#">Noticias</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Todo el deporte en un solo lugar</h1>
+        <p>Resultados, partidos y noticias deportivas.</p>
+    </div>
+</section>
+
+<div class="container">
+
+    <h2 class="title">🏆 Deportes</h2>
+
+    <div class="sports">
+        <div class="sport">⚽ Fútbol</div>
+        <div class="sport">🏀 Básquetbol</div>
+        <div class="sport">🎾 Tenis</div>
+        <div class="sport">🏐 Vóleibol</div>
+    </div>
+
+    <h2 class="title">🔥 Partidos destacados</h2>
+
+    <div class="matches">
+
+        <div class="match">
+            <div class="league">🏀 Básquetbol</div>
+
+            <div class="teams">
+                <span>Equipo A</span>
+                <span class="score">78 - 74</span>
+                <span>Equipo B</span>
+            </div>
+
+            <span class="live">EN VIVO</span>
+        </div>
+
+        <div class="match">
+            <div class="league">⚽ Fútbol</div>
+
+            <div class="teams">
+                <span>Equipo A</span>
+                <span class="score">2 - 1</span>
+                <span>Equipo B</span>
+            </div>
+
+            <span class="live">EN VIVO</span>
+        </div>
+
+        <div class="match">
+            <div class="league">🎾 Tenis</div>
+
+            <div class="teams">
+                <span>Jugador A</span>
+                <span class="score">1 - 0</span>
+                <span>Jugador B</span>
+            </div>
+        </div>
+
+        <div class="match">
+            <div class="league">🏐 Vóleibol</div>
+
+            <div class="teams">
+                <span>Equipo A</span>
+                <span class="score">2 - 2</span>
+                <span>Equipo B</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 100xdeporte — Todos los deportes en un solo lugar</p>
+</footer>
+
+</body>
+</html>
