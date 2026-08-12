@@ -185,6 +185,62 @@ footer{background:#061326;border-top:1px solid #18345c;margin-top:20px;padding:3
  .country-leagues{justify-content:flex-start}
 }
 
+
+/* VERSION 3.0 - GAMIFICACIÓN 100X */
+.gamification-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.gam-card{background:#0e1a2b;border:1px solid #1d3859;border-radius:14px;padding:20px}
+.gam-card h3{color:#38bdf8;margin-bottom:12px}
+.user-head{display:flex;align-items:center;gap:14px;margin-bottom:15px}
+.user-avatar{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#38bdf8,#2563eb);font-size:28px;font-weight:900;color:#071a38}
+.user-name{font-size:20px;font-weight:900}
+.user-level{font-size:12px;color:#94a3b8;margin-top:3px}
+.progress-wrap{margin:12px 0 16px}
+.progress-top{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#94a3b8;margin-bottom:6px}
+.progress-bar{height:10px;background:#091523;border-radius:20px;overflow:hidden;border:1px solid #1d3859}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#38bdf8,#2563eb);transition:width .3s}
+.gam-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.gam-stat{background:#091523;border-radius:10px;padding:11px;text-align:center}
+.gam-stat strong{display:block;color:#38bdf8;font-size:20px}
+.gam-stat span{font-size:10px;color:#94a3b8}
+.missions{display:flex;flex-direction:column;gap:9px}
+.mission{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:10px;background:#091523;border:1px solid transparent;border-radius:10px;padding:10px}
+.mission.done{border-color:#166534;background:#0b2419}
+.mission-icon{font-size:22px;text-align:center}
+.mission-title{font-size:13px;font-weight:900}
+.mission-desc{font-size:11px;color:#94a3b8;margin-top:2px}
+.mission-reward{color:#38bdf8;font-weight:900;font-size:12px}
+.mission.done .mission-reward{color:#4ade80}
+.gam-btn{border:0;background:#38bdf8;color:#071a38;padding:8px 10px;border-radius:8px;font-size:11px;font-weight:900;cursor:pointer}
+.gam-btn:disabled{opacity:.55;cursor:not-allowed}
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.badge{background:#091523;border:1px solid #1d3859;border-radius:10px;padding:12px;text-align:center}
+.badge-icon{font-size:25px}
+.badge-name{font-size:10px;font-weight:900;margin-top:5px}
+.badge.locked{opacity:.42;filter:grayscale(1)}
+.levels{display:flex;flex-direction:column;gap:7px}
+.level-row{display:grid;grid-template-columns:36px 1fr auto;gap:8px;align-items:center;background:#091523;padding:8px;border-radius:8px;font-size:12px}
+.level-row.current{border:1px solid #38bdf8}
+.level-icon{font-size:18px;text-align:center}
+.gam-note{font-size:11px;color:#64748b;margin-top:10px}
+@media(max-width:900px){.gamification-grid{grid-template-columns:1fr}}
+@media(max-width:500px){.gam-stats{grid-template-columns:1fr 1fr 1fr}.badges{grid-template-columns:repeat(2,1fr)}}
+
+
+/* ETAPA 1.1 - MISIONES SEMANALES E HISTORIAL */
+.weekly-mission{margin-top:12px;background:#091523;border:1px solid #1d3859;border-radius:10px;padding:12px}
+.weekly-top{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:900}
+.weekly-progress{height:8px;background:#07101d;border-radius:20px;overflow:hidden;margin:8px 0}
+.weekly-fill{height:100%;width:0;background:linear-gradient(90deg,#a78bfa,#38bdf8);transition:width .3s}
+.history{display:flex;flex-direction:column;gap:7px;max-height:230px;overflow:auto}
+.history-row{display:flex;justify-content:space-between;gap:10px;background:#091523;border-radius:8px;padding:8px 10px;font-size:11px}
+.history-reward{color:#4ade80;font-weight:900;white-space:nowrap}
+.streak-card{margin-top:12px;background:linear-gradient(135deg,#102842,#0b2036);border:1px solid #315477;border-radius:10px;padding:12px}
+.streak-card strong{color:#fb923c}
+.reward-box{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.reward-mini{background:#091523;border-radius:9px;padding:9px;text-align:center;font-size:10px}
+.reward-mini strong{display:block;color:#38bdf8;font-size:15px}
+@media(max-width:500px){.reward-box{grid-template-columns:1fr 1fr}}
+
 </style>
 </head>
 
@@ -443,20 +499,73 @@ footer{background:#061326;border-top:1px solid #18345c;margin-top:20px;padding:3
 </section>
 
 <section class="section" id="ranking">
- <div class="section-head">
-  <div><h2 class="section-title">🏅 <span>Comunidad 100xdeporte</span></h2><p class="section-note">El ranking de usuarios quedará listo para la futura cuenta online.</p></div>
- </div>
- <div class="profile-grid">
-  <div class="profile-card">
-   <h3>👤 Mi perfil</h3>
-   <p id="profileWelcome" class="section-note" style="margin-bottom:14px">Modo visitante. El registro online se agregará más adelante.</p>
-   <div class="profile-stats"><div class="profile-stat"><strong id="profilePoints">100</strong><span>Puntos de prueba</span></div><div class="profile-stat"><strong id="profilePredictions">0</strong><span>Participaciones</span></div></div>
+  <div class="section-head">
+    <div>
+      <h2 class="section-title">🏆 <span>Club 100xdeporte</span></h2>
+      <p class="section-note">Gana puntos, completa misiones y sube de nivel.</p>
+    </div>
   </div>
-  <div class="profile-card">
-   <h3>🏅 Ranking</h3>
-   <div id="rankingList" class="ranking"><div class="rank-row"><span class="rank-num">#1</span><span>Modo público</span><span class="rank-points">—</span></div></div>
+
+  <div class="gamification-grid">
+    <div class="gam-card">
+      <h3>👤 Mi perfil 100X</h3>
+      <div class="user-head">
+        <div class="user-avatar" id="userAvatar">100X</div>
+        <div>
+          <div class="user-name" id="userDisplayName">Fan 100X</div>
+          <div class="user-level" id="userLevel">Nivel 1 · Novato</div>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-top">
+          <span id="levelProgressText">0 / 100 pts</span>
+          <span id="nextLevelText">Siguiente: Aficionado</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="levelProgressFill"></div></div>
+      </div>
+
+      <div class="gam-stats">
+        <div class="gam-stat"><strong id="gamPoints">100</strong><span>Puntos</span></div>
+        <div class="gam-stat"><strong id="gamStreak">1</strong><span>Racha 🔥</span></div>
+        <div class="gam-stat"><strong id="gamCompleted">0</strong><span>Misiones</span></div>
+      </div>
+
+      <p class="gam-note">Los puntos son virtuales y sirven para el sistema de progreso y futuras recompensas.</p>
+    </div>
+
+    <div class="gam-card">
+      <h3>🎯 Misiones de hoy</h3>
+      <div id="dailyMissions" class="missions"></div>
+    </div>
+
+    <div class="gam-card">
+      <h3>🔥 Desafío semanal</h3>
+      <div id="weeklyMission"></div>
+      <div class="streak-card">
+        <div>Racha actual: <strong id="streakBig">1 día</strong></div>
+        <div class="reward-box">
+          <div class="reward-mini"><strong>+150</strong>7 días</div>
+          <div class="reward-mini"><strong>+300</strong>14 días</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gam-card">
+      <h3>📜 Historial de puntos</h3>
+      <div id="pointsHistory" class="history"></div>
+    </div>
+
+    <div class="gam-card">
+      <h3>🎖️ Mis insignias</h3>
+      <div id="badgesList" class="badges"></div>
+    </div>
+
+    <div class="gam-card">
+      <h3>📈 Niveles 100X</h3>
+      <div id="levelsList" class="levels"></div>
+    </div>
   </div>
- </div>
 </section>
 
 </main>
@@ -776,6 +885,370 @@ function cambiarDeporte(nuevoDeporte, boton){
 
     renderResultados();
 }
+
+
+/* VERSION 3.0 - SISTEMA DE PUNTOS, PERFIL Y MISIONES */
+const GAM_KEY = "100xdeporte_gamificacion_v3";
+
+const NIVELES_100X = [
+    {nivel:1,nombre:"Novato",min:0,max:499,icono:"🟢"},
+    {nivel:2,nombre:"Aficionado",min:500,max:1499,icono:"🔵"},
+    {nivel:3,nombre:"Fanático",min:1500,max:2999,icono:"🟣"},
+    {nivel:4,nombre:"Experto",min:3000,max:4999,icono:"🟠"},
+    {nivel:5,nombre:"Leyenda 100X",min:5000,max:Infinity,icono:"🏆"}
+];
+
+const MISIONES_DIARIAS = [
+    {id:"entrada",icono:"🌅",titulo:"Visitar 100xdeporte",desc:"Entra a la página hoy.",puntos:20},
+    {id:"resultados",icono:"🔴",titulo:"Revisar resultados",desc:"Consulta la sección de resultados.",puntos:10},
+    {id:"noticias",icono:"📰",titulo:"Leer una noticia",desc:"Revisa una noticia deportiva.",puntos:10},
+    {id:"deporte",icono:"🏀",titulo:"Explorar deportes",desc:"Selecciona un deporte favorito.",puntos:10}
+];
+
+const INSIGNIAS_100X = [
+    {id:"primera",icono:"⭐",nombre:"Primeros pasos",condicion:p=>p.totalCompletadas>=1},
+    {id:"cien",icono:"💯",nombre:"100 puntos",condicion:p=>p.puntos>=100},
+    {id:"quinientos",icono:"🚀",nombre:"500 puntos",condicion:p=>p.puntos>=500},
+    {id:"racha7",icono:"🔥",nombre:"Racha de 7 días",condicion:p=>p.racha>=7},
+    {id:"misiones10",icono:"🎯",nombre:"10 misiones",condicion:p=>p.totalCompletadas>=10},
+    {id:"leyenda",icono:"🏆",nombre:"Leyenda 100X",condicion:p=>p.puntos>=5000}
+];
+
+function cargarGamer(){
+    const guardado = localStorage.getItem(GAM_KEY);
+    if(guardado){
+        try{return JSON.parse(guardado);}
+        catch(e){}
+    }
+    const nuevo = {
+        nombre:"Fan 100X",
+        puntos:100,
+        racha:1,
+        totalCompletadas:0,
+        fechaUltimaVisita:"",
+        misiones:{},
+        historial:[],
+        semana:"",
+        semanaCompletadas:0,
+        bonusRachas:{r7:false,r14:false,r30:false}
+    };
+    localStorage.setItem(GAM_KEY, JSON.stringify(nuevo));
+    return nuevo;
+}
+
+let gamer = cargarGamer();
+gamer.historial = Array.isArray(gamer.historial) ? gamer.historial : [];
+gamer.bonusRachas = gamer.bonusRachas || {r7:false,r14:false,r30:false};
+gamer.semanaCompletadas = gamer.semanaCompletadas || 0;
+gamer.misionSemanalPremiada = gamer.misionSemanalPremiada || false;
+
+function guardarGamer(){
+    localStorage.setItem(GAM_KEY, JSON.stringify(gamer));
+}
+
+function fechaLocalKey(){
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+
+
+function semanaLocalKey(){
+    const d = new Date();
+    const onejan = new Date(d.getFullYear(),0,1);
+    const day = Math.floor((d-onejan)/86400000)+1;
+    const week = Math.ceil(day/7);
+    return `${d.getFullYear()}-W${week}`;
+}
+
+function registrarHistorial(descripcion, puntos){
+    gamer.historial = Array.isArray(gamer.historial) ? gamer.historial : [];
+    gamer.historial.unshift({
+        fecha:new Date().toLocaleString("es-CL",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}),
+        descripcion,
+        puntos
+    });
+    gamer.historial = gamer.historial.slice(0,30);
+}
+
+function sumarBonus(puntos, descripcion){
+    gamer.puntos += puntos;
+    registrarHistorial(descripcion, puntos);
+}
+
+function actualizarSemana(){
+    const semana = semanaLocalKey();
+    if(gamer.semana !== semana){
+        gamer.semana = semana;
+        gamer.semanaCompletadas = 0;
+        gamer.bonusRachas = gamer.bonusRachas || {r7:false,r14:false,r30:false};
+        guardarGamer();
+    }
+}
+
+function iniciarDiaGamer(){
+    const hoy = fechaLocalKey();
+    actualizarSemana();
+
+    if(gamer.fechaUltimaVisita !== hoy){
+        const anterior = gamer.fechaUltimaVisita;
+        if(anterior){
+            const ayer = new Date();
+            ayer.setDate(ayer.getDate()-1);
+            const ayerKey = `${ayer.getFullYear()}-${String(ayer.getMonth()+1).padStart(2,"0")}-${String(ayer.getDate()).padStart(2,"0")}`;
+            gamer.racha = anterior === ayerKey ? (gamer.racha || 1) + 1 : 1;
+        }else{
+            gamer.racha = 1;
+        }
+
+        gamer.fechaUltimaVisita = hoy;
+
+        const entrada = gamer.misiones["entrada_" + hoy];
+        if(!entrada){
+            completarMision("entrada", true);
+        }else{
+            guardarGamer();
+        }
+
+        comprobarBonosRacha();
+    }
+
+    renderGamer();
+}
+
+function completarMision(id, silencioso=false){
+    const hoy = fechaLocalKey();
+    actualizarSemana();
+    const key = `${id}_${hoy}`;
+
+    if(gamer.misiones[key]) return false;
+
+    const m = MISIONES_DIARIAS.find(x=>x.id===id);
+    if(!m) return false;
+
+    gamer.misiones[key] = true;
+    gamer.puntos += m.puntos;
+    gamer.totalCompletadas += 1;
+    gamer.semanaCompletadas = (gamer.semanaCompletadas || 0) + 1;
+    registrarHistorial(m.titulo, m.puntos);
+
+    if(!silencioso) mostrarPuntos(`+${m.puntos} puntos · ${m.titulo}`);
+
+    comprobarMisionSemanal();
+    guardarGamer();
+    renderGamer();
+    return true;
+}
+
+function completarMisionDesdeBoton(id){
+    completarMision(id, false);
+}
+
+function nivelActual(){
+    return NIVELES_100X.find(n => gamer.puntos >= n.min && gamer.puntos <= n.max) || NIVELES_100X[NIVELES_100X.length-1];
+}
+
+
+function comprobarMisionSemanal(){
+    if(gamer.semanaCompletadas >= 15 && !gamer.misionSemanalPremiada){
+        gamer.puntos += 300;
+        gamer.misionSemanalPremiada = true;
+        registrarHistorial("Desafío semanal completado", 300);
+        mostrarPuntos("+300 puntos · Desafío semanal");
+    }
+}
+
+function comprobarBonosRacha(){
+    gamer.bonusRachas = gamer.bonusRachas || {r7:false,r14:false,r30:false};
+
+    if(gamer.racha >= 7 && !gamer.bonusRachas.r7){
+        gamer.puntos += 150;
+        gamer.bonusRachas.r7 = true;
+        registrarHistorial("Bono por racha de 7 días", 150);
+        mostrarPuntos("+150 puntos · Racha de 7 días");
+    }
+
+    if(gamer.racha >= 14 && !gamer.bonusRachas.r14){
+        gamer.puntos += 300;
+        gamer.bonusRachas.r14 = true;
+        registrarHistorial("Bono por racha de 14 días", 300);
+        mostrarPuntos("+300 puntos · Racha de 14 días");
+    }
+
+    if(gamer.racha >= 30 && !gamer.bonusRachas.r30){
+        gamer.puntos += 500;
+        gamer.bonusRachas.r30 = true;
+        registrarHistorial("Bono por racha de 30 días", 500);
+        mostrarPuntos("+500 puntos · Racha de 30 días");
+    }
+
+    guardarGamer();
+}
+
+function renderWeekly(){
+    const box = document.getElementById("weeklyMission");
+    const count = Math.min(gamer.semanaCompletadas || 0, 15);
+    const pct = (count/15)*100;
+    const done = count >= 15;
+
+    box.innerHTML = `
+      <div class="weekly-mission">
+        <div class="weekly-top">
+          <span>${done ? "✅ Desafío completado" : "Completa 15 actividades"}</span>
+          <span>${count}/15</span>
+        </div>
+        <div class="weekly-progress"><div class="weekly-fill" style="width:${pct}%"></div></div>
+        <div class="mission-desc">${done ? "¡Excelente! Ya ganaste la recompensa semanal." : "Recompensa: +300 puntos"}</div>
+      </div>
+    `;
+
+    const streak = document.getElementById("streakBig");
+    if(streak) streak.textContent = `${gamer.racha || 1} ${(gamer.racha || 1) === 1 ? "día" : "días"}`;
+}
+
+function renderHistory(){
+    const box = document.getElementById("pointsHistory");
+    const history = Array.isArray(gamer.historial) ? gamer.historial : [];
+
+    if(!history.length){
+        box.innerHTML = `<div class="empty">Todavía no hay movimientos.</div>`;
+        return;
+    }
+
+    box.innerHTML = history.map(h => `
+      <div class="history-row">
+        <span>${h.descripcion}<br><small style="color:#64748b">${h.fecha}</small></span>
+        <span class="history-reward">+${h.puntos}</span>
+      </div>
+    `).join("");
+}
+
+function renderGamer(){
+    const nivel = nivelActual();
+    const siguiente = NIVELES_100X[nivel.nivel] || null;
+
+    document.getElementById("saldoPuntos").textContent = gamer.puntos;
+    document.getElementById("gamPoints").textContent = gamer.puntos;
+    document.getElementById("gamStreak").textContent = gamer.racha;
+    document.getElementById("gamCompleted").textContent = gamer.totalCompletadas;
+    document.getElementById("profilePoints")?.setAttribute("data-points", gamer.puntos);
+
+    document.getElementById("userDisplayName").textContent = gamer.nombre;
+    document.getElementById("userLevel").textContent = `${nivel.icono} Nivel ${nivel.nivel} · ${nivel.nombre}`;
+
+    let porcentaje = 100;
+    let textoProgreso = `${gamer.puntos} pts`;
+    let siguienteTexto = "Nivel máximo";
+
+    if(siguiente){
+        const base = nivel.min;
+        const rango = siguiente.min - base;
+        porcentaje = Math.min(100, Math.max(0, ((gamer.puntos - base) / rango) * 100));
+        textoProgreso = `${gamer.puntos - base} / ${rango} pts`;
+        siguienteTexto = `Siguiente: ${siguiente.nombre}`;
+    }
+
+    document.getElementById("levelProgressText").textContent = textoProgreso;
+    document.getElementById("nextLevelText").textContent = siguienteTexto;
+    document.getElementById("levelProgressFill").style.width = porcentaje + "%";
+
+    renderMisiones();
+    renderWeekly();
+    renderHistory();
+    renderInsignias();
+    renderNiveles();
+}
+
+function renderMisiones(){
+    const hoy = fechaLocalKey();
+    const box = document.getElementById("dailyMissions");
+
+    box.innerHTML = MISIONES_DIARIAS.map(m => {
+        const hecha = !!gamer.misiones[`${m.id}_${hoy}`];
+
+        return `
+            <div class="mission ${hecha ? "done" : ""}">
+                <div class="mission-icon">${hecha ? "✅" : m.icono}</div>
+                <div>
+                    <div class="mission-title">${m.titulo}</div>
+                    <div class="mission-desc">${m.desc}</div>
+                </div>
+                <div>
+                    ${hecha
+                        ? `<span class="mission-reward">Completada</span>`
+                        : `<button class="gam-btn" onclick="completarMisionDesdeBoton('${m.id}')">+${m.puntos}</button>`
+                    }
+                </div>
+            </div>
+        `;
+    }).join("");
+}
+
+function renderInsignias(){
+    const box = document.getElementById("badgesList");
+
+    box.innerHTML = INSIGNIAS_100X.map(b => {
+        const desbloqueada = b.condicion(gamer);
+
+        return `
+            <div class="badge ${desbloqueada ? "" : "locked"}">
+                <div class="badge-icon">${desbloqueada ? b.icono : "🔒"}</div>
+                <div class="badge-name">${b.nombre}</div>
+            </div>
+        `;
+    }).join("");
+}
+
+function renderNiveles(){
+    const actual = nivelActual();
+    const box = document.getElementById("levelsList");
+
+    box.innerHTML = NIVELES_100X.map(n => `
+        <div class="level-row ${n.nivel === actual.nivel ? "current" : ""}">
+            <div class="level-icon">${n.icono}</div>
+            <div><strong>Nivel ${n.nivel}</strong> · ${n.nombre}</div>
+            <div>${n.min}+ pts</div>
+        </div>
+    `).join("");
+}
+
+function mostrarPuntos(texto){
+    const msg = document.getElementById("pointsMessage");
+    msg.textContent = "🎉 " + texto;
+    msg.style.display = "block";
+    clearTimeout(window._pointsTimer);
+    window._pointsTimer = setTimeout(()=>msg.style.display="none", 2200);
+}
+
+/* Integración automática con las secciones existentes */
+document.addEventListener("click", function(e){
+    const sport = e.target.closest(".sport");
+    if(sport) completarMision("deporte");
+
+    const nav = e.target.closest('a[href="#resultados"]');
+    if(nav) completarMision("resultados");
+
+    const news = e.target.closest("#noticias .news-card");
+    if(news) completarMision("noticias");
+});
+
+function actualizarPerfilCompatibilidad(){
+    const welcome = document.getElementById("profileWelcome");
+    if(welcome){
+        welcome.textContent = `Bienvenido al Club 100X, ${gamer.nombre}. Completa misiones para ganar puntos.`;
+    }
+    const oldPoints = document.getElementById("profilePoints");
+    if(oldPoints) oldPoints.textContent = gamer.puntos;
+    const oldPred = document.getElementById("profilePredictions");
+    if(oldPred) oldPred.textContent = gamer.totalCompletadas;
+}
+
+function inicializarGamer(){
+    iniciarDiaGamer();
+    actualizarPerfilCompatibilidad();
+}
+
+inicializarGamer();
+
 
 /* Primera carga y actualización periódica. */
 cargarResultadosV21();
