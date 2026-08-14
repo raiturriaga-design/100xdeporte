@@ -1314,7 +1314,8 @@ indicador.textContent = "🪙 Créditos: " + data.saldo;
 indicador.style.cursor = "pointer";
 
 indicador.onclick = function() {
-    alert("🪙 Tienes " + data.saldo + " créditos");
+    indicador.textContent = "🪙 ¡CLIC DETECTADO!";
+    indicador.style.background = "#00c853";
 };
 
   } catch (error) {
