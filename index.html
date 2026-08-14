@@ -1310,7 +1310,12 @@ async function cargarCreditos100x() {
       document.body.appendChild(indicador);
     }
 
-    indicador.textContent = "💳 Créditos: " + data.saldo;
+  indicador.textContent = "💳 Créditos: " + data.saldo;
+indicador.style.cursor = "pointer";
+
+indicador.addEventListener("click", function() {
+    alert("💳 Tienes " + data.saldo + " créditos");
+});
 
   } catch (error) {
     console.error("Error:", error);
