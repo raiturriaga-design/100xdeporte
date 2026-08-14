@@ -1254,6 +1254,70 @@ inicializarGamer();
 cargarResultadosV21();
 setInterval(cargarResultadosV21, 300000);
 </script>
+<!-- CONEXIÓN 100XDEPORTE + SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+const SUPABASE_URL = "https://wdnrwapymvrqhzsxmlt.supabase.co";
+const SUPABASE_KEY = sb_publishable_1QU5E8zJ3ltDVUY5_YQf0w_5sI5p9h0
+
+const supabase100x = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+async function cargarCreditos100x() {
+  try {
+    const { data: { user }, error: userError } =
+      await supabase100x.auth.getUser();
+
+    if (userError || !user) {
+      console.log("Usuario no conectado todavía.");
+      return;
+    }
+
+    const { data, error } = await supabase100x
+      .from("creditos")
+      .select("saldo")
+      .eq("usuario_id", user.id)
+      .single();
+
+    if (error) {
+      console.error("Error obteniendo créditos:", error);
+      return;
+    }
+
+    let indicador = document.getElementById("creditos100x");
+
+    if (!indicador) {
+      indicador = document.createElement("div");
+      indicador.id = "creditos100x";
+
+      indicador.style.cssText = `
+        position: fixed;
+        top: 80px;
+        right: 15px;
+        z-index: 9999;
+        background: #0d47ff;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 4px 12px rgba(0,0,0,.3);
+      `;
+
+      document.body.appendChild(indicador);
+    }
+
+    indicador.textContent = "💳 Créditos: " + data.saldo;
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+cargarCreditos100x();
+</script>
 </body>
 </html>
