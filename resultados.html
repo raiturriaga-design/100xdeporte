@@ -133,19 +133,37 @@ button{font:inherit;color:inherit}
 </main>
 
 <script>
-const filters = document.querySelectorAll('.filter');
-const cards = document.querySelectorAll('.match-card');
+const API_URL = "https://wdnrwapmyvrmqhzsxmt.supabase.co/functions/v1/partidos-chile";
 
-filters.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filters.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const sport = btn.dataset.sport;
-    cards.forEach(card => {
-      card.style.display = (sport === 'todos' || card.dataset.sport === sport) ? '' : 'none';
+async function cargarPartidos() {
+  try {
+    const respuesta = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nombre: "100xdeporte"
+      })
     });
-  });
-});
+
+    const datos = await respuesta.json();
+
+    console.log("Datos recibidos:", datos);
+
+    if (!datos.ok || !datos.partidos) {
+      console.log("No hay partidos disponibles");
+      return;
+    }
+
+    console.log("Partidos encontrados:", datos.partidos);
+
+  } catch (error) {
+    console.error("Error al cargar partidos:", error);
+  }
+}
+
+cargarPartidos();
 </script>
 </body>
 </html>
