@@ -80,12 +80,15 @@ nav a:hover{color:#38bdf8}
 .news-category{font-size:11px;color:#38bdf8;font-weight:900;margin-bottom:6px}
 .news-card h3{font-size:17px;line-height:1.25;margin-bottom:7px}
 .news-card p{font-size:13px;color:#94a3b8}
-.tables-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start}.table-card{padding:14px;min-width:0}.table-card h3{font-size:16px}.standings-wrap{max-height:285px;overflow:auto;border-radius:9px}
-.table-card{padding:18px}
-.table-card h3{color:#38bdf8;margin-bottom:12px}
-.standings{width:100%;border-collapse:collapse;font-size:13px}
-.standings th,.standings td{text-align:left;padding:9px 5px;border-bottom:1px solid #1d3048}
-.standings th{color:#94a3b8;font-size:11px}.mini-title{color:#38bdf8;font-size:12px;margin:9px 0 5px}.compact-note{font-size:10px;color:#64748b;margin-top:8px}
+.tables-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:start;width:100%}
+.table-card{padding:10px;min-width:0}
+.table-card h3{font-size:13px;color:#b7ff00;margin-bottom:7px}
+.standings-wrap{max-height:220px;overflow:auto;border-radius:7px}
+.standings{width:100%;border-collapse:collapse;font-size:10px}
+.standings th,.standings td{text-align:left;padding:5px 3px;border-bottom:1px solid #26332e;white-space:nowrap}
+.standings th{color:#b7ff00;font-size:9px}
+.mini-title{color:#b7ff00;font-size:11px;margin:7px 0 4px}
+.compact-note{font-size:9px;color:#64748b;margin-top:6px}
 .standings td:last-child,.standings th:last-child{text-align:right}
 .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .profile-card{padding:20px}
@@ -241,6 +244,33 @@ footer{background:#061326;border-top:1px solid #18345c;margin-top:20px;padding:3
 .reward-mini strong{display:block;color:#38bdf8;font-size:15px}
 @media(max-width:500px){.reward-box{grid-template-columns:1fr 1fr}}
 
+
+/* ===== 100X DEPORTE — DISEÑO DASHBOARD ===== */
+:root{--x:#b7ff00;--x2:#5cff00;--bg:#030706;--panel:#08110f;--panel2:#0c1714;--line:#36532b;--muted:#9aa59f}
+body{background:radial-gradient(circle at 12% 0%,rgba(92,255,0,.12),transparent 24%),radial-gradient(circle at 92% 8%,rgba(92,255,0,.08),transparent 24%),var(--bg)!important;color:#f5f7f4!important}
+header{background:rgba(3,8,7,.96)!important;border-bottom:1px solid var(--x2)!important;box-shadow:0 0 24px rgba(92,255,0,.12);position:sticky;top:0;z-index:50}
+.header{max-width:1500px!important;min-height:78px!important;padding:0 28px!important}
+.logo{font-size:30px!important;font-style:italic!important;font-weight:900!important;letter-spacing:-1.5px!important}.logo span{color:var(--x)!important}
+nav{gap:4px!important}nav a{padding:12px 15px!important;border-radius:11px!important;color:#f2f5f3!important}nav a:hover{color:var(--x)!important;background:#142900}
+.points-box{background:#09120f!important;border:1px solid #4b6b32!important;color:var(--x)!important;border-radius:22px!important;padding:9px 13px!important}.points-value{background:var(--x)!important;color:#071000!important}
+.live-bar{background:#07100e!important;border-bottom:1px solid #294225!important;padding:7px 15px!important}.live-dot{background:#ff2d2d!important;box-shadow:0 0 0 4px rgba(255,45,45,.12)!important}.live-content{max-width:1500px!important;color:#dfe8e2!important}.live-content strong{color:var(--x)!important}
+.country-tabs-wrap{background:#050a09!important;border-bottom:1px solid #1d2c25!important}.country-tabs{max-width:1500px!important;padding:9px 28px!important;display:flex!important;gap:7px!important;overflow:auto}.country-tab{background:#09120f!important;border:1px solid #304238!important;color:#fff!important;border-radius:8px!important;padding:9px 13px!important}.country-tab.active,.country-tab:hover{border-color:var(--x2)!important;background:#173000!important;color:var(--x)!important}
+.country-info{background:#050a09!important;border-bottom:1px solid #1b2a22!important}.country-info-inner{max-width:1500px!important;padding:8px 28px!important}.country-info-title{color:var(--x)!important}.country-league{background:#09120f!important;border:1px solid #304238!important;color:#fff!important}.country-league:hover{border-color:var(--x2)!important;color:var(--x)!important}
+.hero{display:none!important}
+.container{max-width:1500px!important;padding:22px 28px 35px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 335px!important;gap:14px!important;align-items:start!important}
+.section{margin-bottom:14px!important}.section-head{margin-bottom:12px!important}.section-title{font-size:19px!important;color:var(--x)!important;text-transform:uppercase!important;font-style:italic!important}.section-title span{color:var(--x)!important}.section-note{color:#a8b2ad!important}
+#deportes{grid-column:1/-1;grid-row:1}.sports{grid-template-columns:repeat(5,1fr)!important;gap:10px!important}.sport{height:82px!important;padding:12px!important;background:linear-gradient(145deg,#0e1715,#050a09)!important;border:1px solid #304238!important;border-radius:12px!important}.sport:hover,.sport.active{transform:none!important;border-color:var(--x2)!important;background:#102300!important;box-shadow:0 0 18px rgba(92,255,0,.16)!important}.sport-icon{font-size:31px!important}.sport-name{font-size:13px!important}
+#tablas{grid-column:1;grid-row:2}.tables-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}.table-card{background:linear-gradient(145deg,#0d1715,#050a09)!important;border:1px solid var(--line)!important;border-radius:12px!important;padding:10px!important}.table-card h3{color:var(--x)!important}.standings th,.standings td{border-color:#26332e!important}.standings th{color:var(--x)!important}.standings td:last-child{color:var(--x)!important}
+#resultados{grid-column:1;grid-row:3}.online-toolbar{margin-bottom:9px!important}.online-filter{background:#09120f!important;border-color:#304238!important}.online-filter:hover,.online-filter.active{background:#173000!important;border-color:var(--x2)!important;color:var(--x)!important}.refresh-online{background:linear-gradient(90deg,#65d000,#c4ff00)!important;color:#071000!important}.matches-grid{grid-template-columns:1.35fr .8fr!important;gap:12px!important}.online-match,.side-card{background:linear-gradient(145deg,#0d1715,#050a09)!important;border-color:#304238!important;border-radius:12px!important}.online-score{color:var(--x)!important}.live-status{color:#ff4242!important}.side-card h3{color:var(--x)!important}.mini-item{background:#09120f!important}
+#estadisticas{grid-column:1;grid-row:4}.stats-grid{grid-template-columns:repeat(3,1fr)!important;gap:10px!important}.stat{background:linear-gradient(145deg,#0d1715,#050a09)!important;border-color:#304238!important;border-radius:12px!important}.stat strong{color:var(--x)!important}
+#noticias{grid-column:1;grid-row:5}.news-grid{grid-template-columns:repeat(4,1fr)!important;gap:10px!important}.news-card{background:linear-gradient(145deg,#0d1715,#050a09)!important;border-color:#304238!important}.news-image{background:linear-gradient(135deg,#243c21,#111917)!important}.news-category{color:var(--x)!important}.news-card h3{font-size:14px!important}.news-card p{color:#9aa59f!important}
+#ranking{grid-column:2;grid-row:2 / span 4;position:sticky;top:92px}.gamification-grid{display:flex!important;flex-direction:column!important;gap:10px!important}.gam-card{background:linear-gradient(145deg,#0d1715,#050a09)!important;border:1px solid var(--line)!important;border-radius:12px!important;padding:15px!important}.gam-card h3{color:var(--x)!important}.user-avatar{background:var(--x)!important;color:#071000!important}.user-level{color:#b7c0bb!important}.gam-stat{background:#09120f!important}.gam-stat strong{color:var(--x)!important}.progress-fill{background:var(--x)!important}.gam-note{color:#89958f!important}.reward-mini{background:#09120f!important}.reward-mini strong{color:var(--x)!important}
+.notice{background:#09120f!important;border-color:#304238!important;color:#aeb8b3!important}
+footer{background:#030807!important;border-top:1px solid #304238!important;color:#89948f!important}.footer-logo span{color:var(--x)!important}.footer-links a:hover{color:var(--x)!important}
+.modal-card{background:#09120f!important;border-color:var(--x2)!important}.form-group input{background:#07100e!important;color:#fff!important;border-color:#304238!important}.form-submit{background:linear-gradient(90deg,#65d000,#c4ff00)!important;color:#071000!important}
+@media(max-width:1000px){.container{display:block!important;padding:16px!important}#ranking{position:static}.sports{grid-template-columns:repeat(3,1fr)!important}.news-grid{grid-template-columns:repeat(2,1fr)!important}.matches-grid{grid-template-columns:1fr!important}}
+@media(max-width:600px){.tables-grid{grid-template-columns:1fr!important;gap:8px!important}}
+@media(max-width:600px){.header{padding:0 14px!important}.sports{grid-template-columns:repeat(2,1fr)!important}.news-grid{grid-template-columns:1fr!important}.stats-grid{grid-template-columns:1fr 1fr!important}.country-tabs{padding:8px 14px!important}}
 </style>
 </head>
 
