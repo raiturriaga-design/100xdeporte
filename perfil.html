@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi perfil 100X</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #071018;
+    color: #f8fafc;
+}
+
+header {
+    background: #101c27;
+    border-bottom: 2px solid #8cff00;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #d7ff00;
+}
+
+.back {
+    color: white;
+    text-decoration: none;
+    background: #1d2b38;
+    padding: 10px 16px;
+    border-radius: 10px;
+}
+
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+.profile {
+    background: linear-gradient(135deg, #142532, #0d1821);
+    border: 1px solid #344b5c;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #d7ff00;
+    color: #101820;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+h1 {
+    margin: 0 0 8px;
+}
+
+.level {
+    color: #d7ff00;
+}
+
+.progress {
+    margin-top: 25px;
+}
+
+.progress-bar {
+    height: 14px;
+    background: #263746;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 54%;
+    height: 100%;
+    background: #d7ff00;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: #101c27;
+    border: 1px solid #344b5c;
+    border-radius: 16px;
+    padding: 22px;
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #d7ff00;
+}
+
+.number {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.bet {
+    border-top: 1px solid #30404d;
+    padding: 14px 0;
+}
+
+.bet:first-of-type {
+    border-top: none;
+}
+
+.win {
+    color: #72ff8a;
+}
+
+.pending {
+    color: #ffd45c;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #8b9aa6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">100xdeporte</div>
+    <a class="back" href="index.html">← Volver</a>
+</header>
+
+<main>
+
+<section class="profile">
+    <div class="profile-top">
+        <div class="avatar">100X</div>
+
+        <div>
+            <h1>Fan 100X</h1>
+            <div class="level">Nivel 1 · Novato</div>
+        </div>
+    </div>
+
+    <div class="progress">
+        <strong>270 / 500 puntos</strong>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <p>Siguiente nivel: Aficionado</p>
+    </div>
+</section>
+
+<div class="grid">
+
+    <div class="card">
+        <h2>🏆 Ranking</h2>
+        <div class="number">#13</div>
+        <p>Posición actual</p>
+    </div>
+
+    <div class="card">
+        <h2>⭐ Puntos</h2>
+        <div class="number">270</div>
+        <p>Puntos acumulados</p>
+    </div>
+
+    <div class="card">
+        <h2>🔥 Racha</h2>
+        <div class="number">4</div>
+        <p>Aciertos consecutivos</p>
+    </div>
+
+    <div class="card">
+        <h2>🎯 Misiones</h2>
+        <div class="number">13</div>
+        <p>Misiones completadas</p>
+    </div>
+
+</div>
+
+<br>
+
+<section class="card">
+    <h2>🎲 Mis apuestas</h2>
+
+    <div class="bet">
+        <strong>Universidad de Concepción</strong>
+        <p>Pronóstico: Victoria</p>
+        <span class="win">✓ Acertada</span>
+    </div>
+
+    <div class="bet">
+        <strong>Leones de Quilpué</strong>
+        <p>Pronóstico: Victoria</p>
+        <span class="pending">⏳ Pendiente</span>
+    </div>
+
+    <div class="bet">
+        <strong>CD Valdivia</strong>
+        <p>Pronóstico: Victoria</p>
+        <span class="pending">⏳ Pendiente</span>
+    </div>
+</section>
+
+<br>
+
+<section class="card">
+    <h2>📊 Estadísticas</h2>
+
+    <p>Partidos pronosticados: <strong>18</strong></p>
+    <p>Aciertos: <strong>12</strong></p>
+    <p>Fallos: <strong>6</strong></p>
+    <p>Porcentaje de acierto: <strong>67%</strong></p>
+</section>
+
+</main>
+
+<footer>
+    100xdeporte · Mi perfil 100X
+</footer>
+
+</body>
+</html>
