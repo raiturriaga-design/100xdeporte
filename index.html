@@ -84,7 +84,7 @@ nav a:hover{color:#38bdf8}
 .table-card{padding:10px;min-width:0}
 .table-card h3{font-size:13px;color:#b7ff00;margin-bottom:7px}
 .standings-wrap{max-height:220px;overflow:auto;border-radius:7px}
-.standings{width:100%;border-collapse:collapse;font-size:10px}
+.standings{width:100%;border-collapse:collapse;font-size:10px}.standings tr:hover{background:rgba(183,255,0,.05)}
 .standings th,.standings td{text-align:left;padding:5px 3px;border-bottom:1px solid #26332e;white-space:nowrap}
 .standings th{color:#b7ff00;font-size:9px}
 .mini-title{color:#b7ff00;font-size:11px;margin:7px 0 4px}
@@ -272,6 +272,33 @@ footer{background:#030807!important;border-top:1px solid #304238!important;color
 @media(max-width:600px){.tables-grid{grid-template-columns:1fr!important;gap:8px!important}}
 @media(max-width:600px){.header{padding:0 14px!important}.sports{grid-template-columns:repeat(2,1fr)!important}.news-grid{grid-template-columns:1fr!important}.stats-grid{grid-template-columns:1fr 1fr!important}.country-tabs{padding:8px 14px!important}}
 </style>
+
+<style>
+:root{--lime:#b7ff00;--lime2:#6fff00;--bg:#050908;--panel:#0b1210;--line:#35483e;--muted:#9aa8a1}
+.next-news-grid{display:grid;grid-template-columns:1fr 1.55fr;gap:12px;margin:14px auto;max-width:1250px}
+.panel{background:linear-gradient(145deg,#0d1714,#050908);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 8px 28px rgba(0,0,0,.28)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.panel-head>div{display:flex;align-items:center;gap:8px}
+.panel-kicker{font-size:20px}
+.panel h2{margin:0;color:var(--lime);font-size:16px;letter-spacing:.3px}
+.link-btn{background:none;border:0;color:var(--lime);font-weight:700;cursor:pointer}
+.match-list{display:grid;gap:8px}
+.match-card{background:linear-gradient(135deg,#101b18,#080e0c);border:1px solid #30443a;border-radius:10px;padding:10px}
+.match-meta{display:flex;justify-content:space-between;color:var(--lime);font-size:11px;margin-bottom:8px}
+.teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:7px;font-weight:700;font-size:13px}
+.teams span:last-child{text-align:right}
+.teams b{color:var(--lime);font-size:11px}
+.full-btn{display:block;width:max-content;margin:11px auto 0;padding:8px 18px;border:1px solid var(--lime);border-radius:999px;background:linear-gradient(90deg,#173300,#5fbd00);color:#071000;font-weight:900;cursor:pointer}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.news-card{background:#080f0d;border:1px solid #30443a;border-radius:10px;overflow:hidden;padding-bottom:9px}
+.news-img{height:88px;display:flex;align-items:center;justify-content:center;font-size:42px;background:linear-gradient(135deg,#18251f,#07100d)}
+.news-card>span{display:block;color:var(--lime);font-size:9px;font-weight:900;margin:8px 9px 3px}
+.news-card h3{font-size:13px;line-height:1.2;margin:0 9px 6px}
+.news-card small{color:var(--muted);margin:0 9px}
+@media(max-width:900px){.next-news-grid{grid-template-columns:1fr}.news-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.news-grid{grid-template-columns:1fr}.news-img{height:110px}.teams{font-size:12px}}
+</style>
+
 </head>
 
 <body>
@@ -599,6 +626,44 @@ footer{background:#030807!important;border-top:1px solid #304238!important;color
 </section>
 
 </main>
+
+
+<section class="next-news-grid">
+  <div class="panel next-panel">
+    <div class="panel-head">
+      <div><span class="panel-kicker">📅</span><h2>PRÓXIMOS PARTIDOS</h2></div>
+      <button class="link-btn">Ver todos ›</button>
+    </div>
+    <div class="match-list">
+      <article class="match-card">
+        <div class="match-meta"><span>VIE 16 MAY</span><strong>19:00</strong></div>
+        <div class="teams"><span>🔵 Colo-Colo</span><b>VS</b><span>🔴 U. de Chile</span></div>
+      </article>
+      <article class="match-card">
+        <div class="match-meta"><span>SÁB 17 MAY</span><strong>15:00</strong></div>
+        <div class="teams"><span>⚪ U. Católica</span><b>VS</b><span>🔴 Ñublense</span></div>
+      </article>
+      <article class="match-card">
+        <div class="match-meta"><span>DOM 18 MAY</span><strong>12:30</strong></div>
+        <div class="teams"><span>🟡 Everton</span><b>VS</b><span>🟠 Cobresal</span></div>
+      </article>
+    </div>
+    <button class="full-btn">🏆 VER CALENDARIO COMPLETO</button>
+  </div>
+
+  <div class="panel news-panel">
+    <div class="panel-head">
+      <div><span class="panel-kicker">📰</span><h2>NOTICIAS DESTACADAS</h2></div>
+      <button class="link-btn">Ver todas ›</button>
+    </div>
+    <div class="news-grid">
+      <article class="news-card"><div class="news-img football">⚽</div><span>FÚTBOL CHILENO</span><h3>Colo-Colo se prepara para su próximo desafío</h3><small>Hace 2 horas</small></article>
+      <article class="news-card"><div class="news-img basketball">🏀</div><span>BÁSQUETBOL</span><h3>Chile se prepara para nuevos partidos</h3><small>Hace 4 horas</small></article>
+      <article class="news-card"><div class="news-img tennis">🎾</div><span>TENIS</span><h3>La acción continúa en el circuito internacional</h3><small>Hace 6 horas</small></article>
+    </div>
+    <button class="full-btn">📰 TODAS LAS NOTICIAS</button>
+  </div>
+</section>
 
 <footer>
  <div class="footer-logo">100x<span>deporte</span></div>
