@@ -1444,10 +1444,12 @@ indicador.onclick = function() {
 }
 
 cargarCreditos100x();
-    const perfil100xCard = document.getElementById("perfil100xCard");
+  const perfil100xCard = document.getElementById("perfil100xCard");
 
 perfil100xCard.addEventListener("click", function() {
-    alert("Perfil 100X seleccionado");
+    document.getElementById("ranking").scrollIntoView({
+        behavior: "smooth"
+    });
 });
 </script>
 </body>
