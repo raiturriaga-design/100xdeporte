@@ -556,7 +556,7 @@ footer{background:#030807!important;border-top:1px solid #304238!important;color
 </section>
 <section class="section" id="ranking">
   <div class="gamification-grid">
-    <div class="gam-card">
+    <div class="gam-card" id="perfil100xCard" role="button" tabindex="0">
       <h3>👤 Mi perfil 100X</h3>
       <div class="user-head">
         <div class="user-avatar" id="userAvatar">100X</div>
@@ -1444,6 +1444,11 @@ indicador.onclick = function() {
 }
 
 cargarCreditos100x();
+    const perfil100xCard = document.getElementById("perfil100xCard");
+
+perfil100xCard.addEventListener("click", function() {
+    alert("Perfil 100X seleccionado");
+});
 </script>
 </body>
 </html>
