@@ -1475,6 +1475,7 @@ function actualizarBotonUsuario(user) {
       user.email ||
       "Usuario";
 window.usuarioActualNombre = nombre;
+      document.getElementById("userDisplayName").textContent = nombre;
     boton.textContent = "👤 " + nombre + " · Cerrar sesión";
     boton.onclick = cerrarSesion100x;
   } else {
