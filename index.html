@@ -310,10 +310,11 @@ footer{background:#030807!important;border-top:1px solid #304238!important;color
   <nav id="mainNav">
    <a href="#inicio">Inicio</a>
    <a href="#deportes">Deportes</a>
-   <a href="resultados.html">Resultados</
+   <a href="resultados.html">Resultados</a>
    <a href="#estadisticas">Estadísticas</a>
    <a href="#noticias">Noticias</a>
    <a href="#ranking">Ranking</a>
+   <button id="googleLoginBtn" class="online-filter" type="button" onclick="iniciarSesionGoogle()">🔵 Iniciar sesión con Google</button>
    <div class="points-box">🏆 <span id="saldoPuntos">100</span> pts</div>
   </nav>
  </div>
@@ -556,7 +557,7 @@ footer{background:#030807!important;border-top:1px solid #304238!important;color
 </section>
 <section class="section" id="ranking">
   <div class="gamification-grid">
-    <div class="gam-card" id="perfil100xCard" role="button" tabindex="0" onclick="window.location.href='perfil.html'"
+    <div class="gam-card" id="perfil100xCard" role="button" tabindex="0" onclick="window.location.href='perfil.html'">
       <h3>👤 Mi perfil 100X</h3>
       <div class="user-head">
         <div class="user-avatar" id="userAvatar">100X</div>
@@ -1376,25 +1377,100 @@ setInterval(cargarResultadosV21, 300000);
 </script>
 <!-- CONEXIÓN 100XDEPORTE + SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 const SUPABASE_URL = "https://wdnrwapymvrqhzsxmlt.supabase.co";
-const SUPABASE_KEY = sb_publishable_1QU5E8zJ3ltDVUY5_YQf0w_5sI5p9h0:
+const SUPABASE_KEY = "sb_publishable_1QU5E8zJ3ltDVUY5_YQf0w_5sI5p9h0";
 
 const supabase100x = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
+/* =========================
+   LOGIN CON GOOGLE
+   ========================= */
+async function iniciarSesionGoogle() {
+  try {
+    const redirectTo = window.location.origin + window.location.pathname;
+
+    const { error } = await supabase100x.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo }
+    });
+
+    if (error) {
+      console.error("Error al iniciar sesión con Google:", error);
+      alert("No se pudo iniciar sesión con Google.");
+    }
+  } catch (error) {
+    console.error("Error inesperado:", error);
+    alert("Ocurrió un error al iniciar sesión.");
+  }
+}
+
+async function cerrarSesion100x() {
+  const { error } = await supabase100x.auth.signOut();
+  if (error) {
+    console.error("Error cerrando sesión:", error);
+    return;
+  }
+  actualizarBotonUsuario(null);
+}
+
+function actualizarBotonUsuario(user) {
+  const boton = document.getElementById("googleLoginBtn");
+  if (!boton) return;
+
+  if (user) {
+    const nombre =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.name ||
+      user.email ||
+      "Usuario";
+
+    boton.textContent = "👤 " + nombre + " · Cerrar sesión";
+    boton.onclick = cerrarSesion100x;
+  } else {
+    boton.textContent = "🔵 Iniciar sesión con Google";
+    boton.onclick = iniciarSesionGoogle;
+  }
+}
+
+async function comprobarSesion100x() {
+  const { data, error } = await supabase100x.auth.getSession();
+
+  if (error) {
+    console.error("Error obteniendo sesión:", error);
+    return;
+  }
+
+  actualizarBotonUsuario(data.session?.user || null);
+
+  if (data.session?.user) {
+    cargarCreditos100x();
+  }
+}
+
+supabase100x.auth.onAuthStateChange((event, session) => {
+  console.log("Estado de autenticación:", event);
+  actualizarBotonUsuario(session?.user || null);
+
+  if (session?.user) {
+    cargarCreditos100x();
+  }
+});
+
+/* =========================
+   CRÉDITOS 100X
+   ========================= */
 async function cargarCreditos100x() {
   try {
-    const { data: { user }, error: userError } =
-      await supabase100x.auth.getUser();
+    const {
+      data: { user },
+      error: userError
+    } = await supabase100x.auth.getUser();
 
-    if (userError || !user) {
-      console.log("Usuario no conectado todavía.");
-      return;
-    }
+    if (userError || !user) return;
 
     const { data, error } = await supabase100x
       .from("creditos")
@@ -1403,7 +1479,7 @@ async function cargarCreditos100x() {
       .single();
 
     if (error) {
-      console.error("Error obteniendo créditos:", error);
+      console.log("No se pudieron cargar los créditos:", error.message);
       return;
     }
 
@@ -1412,7 +1488,6 @@ async function cargarCreditos100x() {
     if (!indicador) {
       indicador = document.createElement("div");
       indicador.id = "creditos100x";
-
       indicador.style.cssText = `
         position: fixed;
         top: 80px;
@@ -1426,31 +1501,19 @@ async function cargarCreditos100x() {
         font-family: Arial, sans-serif;
         box-shadow: 0 4px 12px rgba(0,0,0,.3);
       `;
-
       document.body.appendChild(indicador);
     }
 
-indicador.textContent = "🪙 Créditos: " + data.saldo;
-indicador.style.cursor = "pointer";
-
-indicador.onclick = function() {
-    indicador.textContent = "🪙 ¡CLIC DETECTADO!";
-    indicador.style.background = "#00c853";
-};
-
+    indicador.textContent = "🪙 Créditos: " + data.saldo;
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error cargando créditos:", error);
   }
 }
 
-cargarCreditos100x();
-  const perfil100xCard = document.getElementById("perfil100xCard");
-
-perfil100xCard.addEventListener("click", function() {
-    document.getElementById("ranking").scrollIntoView({
-        behavior: "smooth"
-    });
-});
+/* =========================
+   INICIO
+   ========================= */
+comprobarSesion100x();
 </script>
 </body>
 </html>
