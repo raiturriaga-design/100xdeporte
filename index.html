@@ -1253,7 +1253,8 @@ function renderGamer(){
     document.getElementById("gamCompleted").textContent = gamer.totalCompletadas;
     document.getElementById("profilePoints")?.setAttribute("data-points", gamer.puntos);
 
-    document.getElementById("userDisplayName").textContent = gamer.nombre;
+    document.getElementById("userDisplayName").textContent =
+  window.usuarioActualNombre || gamer.nombre;
     document.getElementById("userLevel").textContent = `${nivel.icono} Nivel ${nivel.nivel} · ${nivel.nombre}`;
 
     let porcentaje = 100;
@@ -1395,7 +1396,9 @@ async function iniciarSesionGoogle() {
 
     const { error } = await supabase100x.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo }
+      options: {
+        redirectTo: redirectTo
+      }
     });
 
     if (error) {
@@ -1407,7 +1410,51 @@ async function iniciarSesionGoogle() {
     alert("Ocurrió un error al iniciar sesión.");
   }
 }
+async function crearPerfilUsuario() {
+  try {
+    const { data, error } = await supabase100x.auth.getUser();
 
+    if (error || !data.user) {
+      return;
+    }
+
+    const user = data.user;
+
+    const username =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.name ||
+      user.email?.split("@")[0] ||
+      "Usuario";
+
+    const { error: perfilError } = await supabase100x
+      .from("perfiles")
+      .upsert(
+        {
+          id: user.id,
+          username: username,
+          puntos: 0
+        },
+        {
+          onConflict: "id"
+        }
+      );
+
+    if (perfilError) {
+      console.error("Error creando perfil:", perfilError);
+    } else {
+      console.log("Perfil creado/actualizado:", username);
+    }
+
+  } catch (error) {
+    console.error("Error al crear perfil:", error);
+  }
+}
+
+supabase100x.auth.onAuthStateChange((event, session) => {
+  if (session?.user) {
+    crearPerfilUsuario();
+  }
+});
 async function cerrarSesion100x() {
   const { error } = await supabase100x.auth.signOut();
   if (error) {
@@ -1427,7 +1474,7 @@ function actualizarBotonUsuario(user) {
       user.user_metadata?.name ||
       user.email ||
       "Usuario";
-
+window.usuarioActualNombre = nombre;
     boton.textContent = "👤 " + nombre + " · Cerrar sesión";
     boton.onclick = cerrarSesion100x;
   } else {
