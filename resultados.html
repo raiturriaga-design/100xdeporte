@@ -45,6 +45,10 @@ button{
   color:inherit;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .header{
   position:sticky;
   top:0;
@@ -87,8 +91,8 @@ button{
   font-size:14px;
 }
 
-.navlinks a.active,
-.navlinks a:hover{
+.navlinks a:hover,
+.navlinks a.active{
   color:var(--green);
 }
 
@@ -96,13 +100,22 @@ button{
   margin-left:8px;
   color:var(--green);
   font-weight:900;
+  white-space:nowrap;
 }
+
+/* =========================
+   CONTENEDOR
+========================= */
 
 .wrap{
   max-width:1250px;
   margin:auto;
   padding:22px;
 }
+
+/* =========================
+   ESTADO
+========================= */
 
 .status{
   display:flex;
@@ -126,6 +139,15 @@ button{
   box-shadow:0 0 12px var(--red);
 }
 
+.dot.error{
+  background:var(--red);
+  box-shadow:0 0 12px var(--red);
+}
+
+/* =========================
+   FILTROS
+========================= */
+
 .filters{
   display:flex;
   gap:8px;
@@ -142,11 +164,19 @@ button{
   font-weight:700;
 }
 
+.filter:hover{
+  border-color:#45647c;
+}
+
 .filter.active{
   border-color:var(--green);
   color:var(--green);
   box-shadow:0 0 12px rgba(168,255,0,.12);
 }
+
+/* =========================
+   LAYOUT
+========================= */
 
 .layout{
   display:grid;
@@ -157,6 +187,10 @@ button{
 .main{
   min-width:0;
 }
+
+/* =========================
+   TOOLBAR
+========================= */
 
 .toolbar{
   display:flex;
@@ -169,6 +203,24 @@ button{
 .toolbar h1{
   font-size:23px;
 }
+
+.refresh{
+  border:1px solid var(--green);
+  background:rgba(168,255,0,.08);
+  color:var(--green);
+  border-radius:9px;
+  padding:8px 12px;
+  cursor:pointer;
+  font-weight:800;
+}
+
+.refresh:hover{
+  background:rgba(168,255,0,.16);
+}
+
+/* =========================
+   TARJETAS
+========================= */
 
 .card{
   background:
@@ -201,6 +253,10 @@ button{
   margin-bottom:12px;
 }
 
+/* =========================
+   PARTIDO
+========================= */
+
 .match{
   display:grid;
   grid-template-columns:1fr auto 1fr;
@@ -227,8 +283,8 @@ button{
 }
 
 .team-logo{
-  width:34px;
-  height:34px;
+  width:38px;
+  height:38px;
   object-fit:contain;
   flex:none;
 }
@@ -263,16 +319,28 @@ button{
   margin-top:7px;
 }
 
+.match-date{
+  display:block;
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
+}
+
+/* =========================
+   ESTADOS
+========================= */
+
 .empty{
   text-align:center;
   color:var(--muted);
-  padding:30px 15px;
+  padding:40px 15px;
 }
 
 .loading{
   text-align:center;
   color:var(--cyan);
-  padding:30px;
+  padding:40px;
 }
 
 .error{
@@ -280,19 +348,9 @@ button{
   color:#ff9aaa;
 }
 
-.refresh{
-  border:1px solid var(--green);
-  background:rgba(168,255,0,.08);
-  color:var(--green);
-  border-radius:9px;
-  padding:8px 12px;
-  cursor:pointer;
-  font-weight:800;
-}
-
-.refresh:hover{
-  background:rgba(168,255,0,.16);
-}
+/* =========================
+   TABLA
+========================= */
 
 .table-wrap{
   overflow-x:auto;
@@ -350,6 +408,10 @@ button{
   font-weight:900;
 }
 
+/* =========================
+   SIDEBAR
+========================= */
+
 .side h2{
   font-size:16px;
   color:var(--green);
@@ -402,13 +464,9 @@ button{
   line-height:1.5;
 }
 
-.section-title{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:22px 0 12px;
-  font-size:18px;
-}
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:850px){
 
@@ -453,6 +511,11 @@ button{
     display:none;
   }
 
+  .points{
+    margin-left:auto;
+    font-size:12px;
+  }
+
   .match{
     gap:8px;
   }
@@ -465,12 +528,21 @@ button{
     font-size:21px;
   }
 
+  .team-logo{
+    width:30px;
+    height:30px;
+  }
+
   .side{
     grid-template-columns:1fr;
   }
 
   .toolbar{
     align-items:flex-start;
+  }
+
+  .refresh{
+    font-size:12px;
   }
 }
 </style>
@@ -525,9 +597,16 @@ button{
 
 <main class="wrap">
 
+  <!-- =========================
+       ESTADO DE CONEXIÓN
+  ========================== -->
+
   <div class="status">
 
-    <i class="dot" id="statusDot"></i>
+    <i
+      class="dot"
+      id="statusDot">
+    </i>
 
     <b id="statusText">
       CONECTANDO...
@@ -540,26 +619,50 @@ button{
   </div>
 
 
+  <!-- =========================
+       FILTROS
+  ========================== -->
+
   <div class="filters">
 
-    <button class="filter active" data-view="resultados">
+    <button
+      class="filter active"
+      data-view="resultados">
+
       🟢 Resultados
+
     </button>
 
-    <button class="filter" data-view="proximos">
+    <button
+      class="filter"
+      data-view="proximos">
+
       📅 Próximos
+
     </button>
 
-    <button class="filter" data-view="tabla">
+    <button
+      class="filter"
+      data-view="tabla">
+
       🏆 Tabla
+
     </button>
 
-    <button class="filter" data-view="envivo">
+    <button
+      class="filter"
+      data-view="envivo">
+
       🔴 En vivo
+
     </button>
 
   </div>
 
+
+  <!-- =========================
+       CONTENIDO
+  ========================== -->
 
   <section class="layout">
 
@@ -583,6 +686,7 @@ button{
 
         </div>
 
+
         <button
           class="refresh"
           id="refreshBtn">
@@ -597,7 +701,9 @@ button{
       <div id="contenido">
 
         <div class="loading">
+
           ⚽ Cargando datos deportivos...
+
         </div>
 
       </div>
@@ -605,7 +711,12 @@ button{
     </div>
 
 
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
     <aside class="side">
+
 
       <div class="card">
 
@@ -642,6 +753,7 @@ button{
 
         </div>
 
+
         <div class="mission">
 
           <b>
@@ -653,6 +765,7 @@ button{
           </span>
 
         </div>
+
 
         <div class="mission">
 
@@ -666,12 +779,16 @@ button{
 
         </div>
 
+
         <div class="progress">
           <i></i>
         </div>
 
+
         <div class="notice">
+
           2 de 3 misiones completadas
+
         </div>
 
       </div>
@@ -703,6 +820,7 @@ button{
 
       </div>
 
+
     </aside>
 
   </section>
@@ -720,13 +838,21 @@ const API_URL =
   "https://wdnrwapmyvrmqhzsxmt.supabase.co/functions/v1/partidos-chile";
 
 
+/* ==========================================================
+   DATOS
+========================================================== */
+
 let datosGlobales = {
 
+  partidos: [],
+
   en_vivo: [],
+
   proximos: [],
+
   resultados: [],
-  posiciones: [],
-  partidos: []
+
+  posiciones: []
 
 };
 
@@ -761,15 +887,37 @@ const refreshBtn =
 
 
 /* ==========================================================
+   ESCAPAR HTML
+========================================================== */
+
+function escaparHTML(valor){
+
+  if(
+    valor === null ||
+    valor === undefined
+  ){
+    return "";
+  }
+
+  return String(valor)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+/* ==========================================================
    FECHA
 ========================================================== */
 
 function obtenerFecha(partido){
 
   return (
-    partido.fecha ||
-    partido.dateEvent ||
-    partido.fecha_evento ||
+    partido.fecha ??
+    partido.dateEvent ??
+    partido.fecha_evento ??
     null
   );
 
@@ -783,11 +931,11 @@ function obtenerFecha(partido){
 function obtenerHora(partido){
 
   if(partido.hora){
-    return partido.hora;
+    return String(partido.hora);
   }
 
   if(partido.strTime){
-    return partido.strTime;
+    return String(partido.strTime);
   }
 
   return "";
@@ -796,7 +944,7 @@ function obtenerHora(partido){
 
 
 /* ==========================================================
-   FORMATEAR FECHA
+   FECHA LOCAL
 ========================================================== */
 
 function formatearFecha(fecha){
@@ -805,10 +953,42 @@ function formatearFecha(fecha){
     return "Fecha no disponible";
   }
 
+  const texto = String(fecha);
+
+  /*
+    Si viene como YYYY-MM-DD,
+    evitamos problemas de zona horaria.
+  */
+
+  const match =
+    texto.match(
+      /^(\d{4})-(\d{2})-(\d{2})/
+    );
+
+  if(match){
+
+    const año = Number(match[1]);
+    const mes = Number(match[2]);
+    const dia = Number(match[3]);
+
+    const fechaLocal =
+      new Date(año,mes - 1,dia);
+
+    return fechaLocal.toLocaleDateString(
+      "es-CL",
+      {
+        day:"2-digit",
+        month:"short",
+        year:"numeric"
+      }
+    );
+
+  }
+
   const d = new Date(fecha);
 
   if(Number.isNaN(d.getTime())){
-    return fecha;
+    return texto;
   }
 
   return d.toLocaleDateString(
@@ -824,50 +1004,39 @@ function formatearFecha(fecha){
 
 
 /* ==========================================================
-   FORMATEAR HORA
+   HORA
 ========================================================== */
 
 function formatearHora(partido){
 
-  const hora = obtenerHora(partido);
+  const hora =
+    obtenerHora(partido);
 
   if(hora){
-    return hora.slice(0,5);
+
+    const limpia =
+      hora.replace("Z","");
+
+    return limpia.slice(0,5);
+
   }
 
-  const fecha = obtenerFecha(partido);
-
-  if(!fecha){
-    return "";
-  }
-
-  const d = new Date(fecha);
-
-  if(Number.isNaN(d.getTime())){
-    return "";
-  }
-
-  return d.toLocaleTimeString(
-    "es-CL",
-    {
-      hour:"2-digit",
-      minute:"2-digit"
-    }
-  );
+  return "";
 
 }
 
 
 /* ==========================================================
-   OBTENER EQUIPO LOCAL
+   EQUIPO LOCAL
 ========================================================== */
 
 function obtenerLocal(partido){
 
   return (
-    partido.local ||
-    partido.strHomeTeam ||
-    partido.homeTeam ||
+    partido.local ??
+    partido.strHomeTeam ??
+    partido.homeTeam ??
+    partido.equipo_local ??
     "Equipo local"
   );
 
@@ -875,15 +1044,16 @@ function obtenerLocal(partido){
 
 
 /* ==========================================================
-   OBTENER EQUIPO VISITANTE
+   EQUIPO VISITANTE
 ========================================================== */
 
 function obtenerVisitante(partido){
 
   return (
-    partido.visitante ||
-    partido.strAwayTeam ||
-    partido.awayTeam ||
+    partido.visitante ??
+    partido.strAwayTeam ??
+    partido.awayTeam ??
+    partido.equipo_visitante ??
     "Equipo visitante"
   );
 
@@ -891,15 +1061,16 @@ function obtenerVisitante(partido){
 
 
 /* ==========================================================
-   OBTENER ESCUDO LOCAL
+   ESCUDO LOCAL
 ========================================================== */
 
 function obtenerEscudoLocal(partido){
 
   return (
-    partido.escudo_local ||
-    partido.strHomeTeamBadge ||
-    partido.homeBadge ||
+    partido.escudo_local ??
+    partido.strHomeTeamBadge ??
+    partido.homeBadge ??
+    partido.escudoLocal ??
     ""
   );
 
@@ -907,15 +1078,16 @@ function obtenerEscudoLocal(partido){
 
 
 /* ==========================================================
-   OBTENER ESCUDO VISITANTE
+   ESCUDO VISITANTE
 ========================================================== */
 
 function obtenerEscudoVisitante(partido){
 
   return (
-    partido.escudo_visitante ||
-    partido.strAwayTeamBadge ||
-    partido.awayBadge ||
+    partido.escudo_visitante ??
+    partido.strAwayTeamBadge ??
+    partido.awayBadge ??
+    partido.escudoVisitante ??
     ""
   );
 
@@ -923,17 +1095,51 @@ function obtenerEscudoVisitante(partido){
 
 
 /* ==========================================================
-   OBTENER ESTADO
+   GOLES LOCAL
+========================================================== */
+
+function obtenerGolesLocal(partido){
+
+  return (
+    partido.goles_local ??
+    partido.intHomeScore ??
+    partido.homeScore ??
+    null
+  );
+
+}
+
+
+/* ==========================================================
+   GOLES VISITANTE
+========================================================== */
+
+function obtenerGolesVisitante(partido){
+
+  return (
+    partido.goles_visitante ??
+    partido.intAwayScore ??
+    partido.awayScore ??
+    null
+  );
+
+}
+
+
+/* ==========================================================
+   ESTADO
 ========================================================== */
 
 function obtenerEstado(partido){
 
   return String(
-    partido.estado ||
-    partido.strStatus ||
-    partido.status ||
+    partido.estado ??
+    partido.strStatus ??
+    partido.status ??
     ""
-  ).toLowerCase().trim();
+  )
+  .toLowerCase()
+  .trim();
 
 }
 
@@ -944,38 +1150,41 @@ function obtenerEstado(partido){
 
 function esEnVivo(partido){
 
-  const estado = obtenerEstado(partido);
+  if(
+    partido.en_vivo === true ||
+    partido.live === true
+  ){
+    return true;
+  }
+
+  const estado =
+    obtenerEstado(partido);
 
   const estadosVivo = [
+
     "live",
     "en vivo",
     "in play",
+    "inplay",
     "1h",
     "2h",
     "ht",
     "halftime",
     "first half",
     "second half"
+
   ];
 
-  if(
-    estadosVivo.some(
-      x => estado.includes(x)
-    )
-  ){
-    return true;
-  }
-
-  return (
-    partido.en_vivo === true ||
-    partido.live === true
+  return estadosVivo.some(
+    estadoActual =>
+      estado.includes(estadoActual)
   );
 
 }
 
 
 /* ==========================================================
-   SABER SI FINALIZÓ
+   SABER SI TERMINÓ
 ========================================================== */
 
 function esFinalizado(partido){
@@ -984,9 +1193,11 @@ function esFinalizado(partido){
     return false;
   }
 
-  const estado = obtenerEstado(partido);
+  const estado =
+    obtenerEstado(partido);
 
   const estadosFinalizados = [
+
     "finished",
     "finalizado",
     "final",
@@ -994,6 +1205,7 @@ function esFinalizado(partido){
     "after",
     "ended",
     "match finished"
+
   ];
 
   if(
@@ -1004,8 +1216,16 @@ function esFinalizado(partido){
     return true;
   }
 
-  const gl = partido.goles_local;
-  const gv = partido.goles_visitante;
+  /*
+    Si la API ya entregó goles y la fecha
+    ya pasó, lo consideramos finalizado.
+  */
+
+  const gl =
+    obtenerGolesLocal(partido);
+
+  const gv =
+    obtenerGolesVisitante(partido);
 
   const tieneMarcador =
     gl !== null &&
@@ -1017,14 +1237,19 @@ function esFinalizado(partido){
 
   if(tieneMarcador){
 
-    const fecha = obtenerFecha(partido);
+    const fecha =
+      obtenerFecha(partido);
 
     if(fecha){
 
-      const d = new Date(fecha);
+      const d =
+        new Date(fecha);
 
-      if(!Number.isNaN(d.getTime())){
-        return d.getTime() < Date.now();
+      if(
+        !Number.isNaN(d.getTime()) &&
+        d.getTime() < Date.now()
+      ){
+        return true;
       }
 
     }
@@ -1050,23 +1275,27 @@ function esProximo(partido){
     return false;
   }
 
-  const estado = obtenerEstado(partido);
+  const estado =
+    obtenerEstado(partido);
 
   if(
+
     estado.includes("scheduled") ||
     estado.includes("programado") ||
     estado.includes("not started") ||
-    estado.includes("ns") ||
-    estado === ""
+    estado.includes("ns")
+
   ){
     return true;
   }
 
-  const fecha = obtenerFecha(partido);
+  const fecha =
+    obtenerFecha(partido);
 
   if(fecha){
 
-    const d = new Date(fecha);
+    const d =
+      new Date(fecha);
 
     if(
       !Number.isNaN(d.getTime()) &&
@@ -1077,13 +1306,18 @@ function esProximo(partido){
 
   }
 
+  /*
+    Si no tiene estado ni fecha clara,
+    no lo forzamos como próximo.
+  */
+
   return false;
 
 }
 
 
 /* ==========================================================
-   ESCUDO HTML
+   ESCUDO
 ========================================================== */
 
 function escudo(url){
@@ -1092,11 +1326,15 @@ function escudo(url){
     return "";
   }
 
+  const segura =
+    escaparHTML(url);
+
   return `
     <img
       class="team-logo"
-      src="${url}"
+      src="${segura}"
       alt=""
+      loading="lazy"
       onerror="this.style.display='none'"
     >
   `;
@@ -1108,13 +1346,20 @@ function escudo(url){
    CREAR PARTIDO
 ========================================================== */
 
-function crearPartidoHTML(partido,tipo){
+function crearPartidoHTML(
+  partido,
+  tipo
+){
 
   const local =
-    obtenerLocal(partido);
+    escaparHTML(
+      obtenerLocal(partido)
+    );
 
   const visitante =
-    obtenerVisitante(partido);
+    escaparHTML(
+      obtenerVisitante(partido)
+    );
 
   const escudoLocal =
     obtenerEscudoLocal(partido);
@@ -1123,14 +1368,11 @@ function crearPartidoHTML(partido,tipo){
     obtenerEscudoVisitante(partido);
 
   const golesLocal =
-    partido.goles_local ??
-    partido.intHomeScore ??
-    null;
+    obtenerGolesLocal(partido);
 
   const golesVisitante =
-    partido.goles_visitante ??
-    partido.intAwayScore ??
-    null;
+    obtenerGolesVisitante(partido);
+
 
   const fecha =
     obtenerFecha(partido);
@@ -1138,54 +1380,79 @@ function crearPartidoHTML(partido,tipo){
   const hora =
     formatearHora(partido);
 
-  let textoEstado = "";
-  let claseEstado = "";
+
+  let textoEstado =
+    "FINALIZADO";
+
+  let claseEstado =
+    "";
+
 
   if(tipo === "envivo"){
 
-    textoEstado = "🔴 EN VIVO";
-    claseEstado = "live";
+    textoEstado =
+      "🔴 EN VIVO";
+
+    claseEstado =
+      "live";
 
   }
+
   else if(tipo === "proximos"){
 
-    textoEstado = "PRÓXIMO";
-    claseEstado = "scheduled";
+    textoEstado =
+      "PRÓXIMO";
+
+    claseEstado =
+      "scheduled";
 
   }
-  else{
-
-    textoEstado = "FINALIZADO";
-
-  }
 
 
-  let marcador = "-";
+  let marcador =
+    "-";
+
 
   if(
+
     golesLocal !== null &&
     golesLocal !== undefined &&
     golesLocal !== "" &&
+
     golesVisitante !== null &&
     golesVisitante !== undefined &&
     golesVisitante !== ""
+
   ){
 
     marcador =
-      `${golesLocal} - ${golesVisitante}`;
+      `${escaparHTML(golesLocal)} - ${escaparHTML(golesVisitante)}`;
 
   }
 
 
   const estadio =
-    partido.estadio ||
-    partido.strVenue ||
-    "";
+    escaparHTML(
+      partido.estadio ??
+      partido.strVenue ??
+      ""
+    );
+
 
   const ciudad =
-    partido.ciudad ||
-    partido.strCity ||
-    "";
+    escaparHTML(
+      partido.ciudad ??
+      partido.strCity ??
+      ""
+    );
+
+
+  const liga =
+    escaparHTML(
+      partido.liga ??
+      partido.strLeague ??
+      "Chile Primera División"
+    );
 
 
   return `
@@ -1193,10 +1460,16 @@ function crearPartidoHTML(partido,tipo){
     <div class="card match-card">
 
       <div class="league">
-        ⚽ Chile Primera División
+
+        ⚽ ${liga}
+
       </div>
 
+
       <div class="match">
+
+
+        <!-- LOCAL -->
 
         <div class="team">
 
@@ -1210,18 +1483,27 @@ function crearPartidoHTML(partido,tipo){
 
           </div>
 
+
           <div class="meta">
 
-            ${ciudad}
+            ${
+              ciudad
+                ? ciudad
+                : ""
+            }
 
-            ${estadio
-              ? " · " + estadio
-              : ""}
+            ${
+              estadio
+                ? " · " + estadio
+                : ""
+            }
 
           </div>
 
         </div>
 
+
+        <!-- MARCADOR -->
 
         <div>
 
@@ -1232,30 +1514,30 @@ function crearPartidoHTML(partido,tipo){
 
           </div>
 
+
           <div class="score">
 
             ${marcador}
 
           </div>
 
-          <div
-            style="
-            display:block;
-            text-align:center;
-            color:var(--muted);
-            font-size:11px;
-            margin-top:4px">
+
+          <div class="match-date">
 
             ${formatearFecha(fecha)}
 
-            ${hora
-              ? " · " + hora
-              : ""}
+            ${
+              hora
+                ? " · " + escaparHTML(hora)
+                : ""
+            }
 
           </div>
 
         </div>
 
+
+        <!-- VISITANTE -->
 
         <div class="team right">
 
@@ -1269,13 +1551,19 @@ function crearPartidoHTML(partido,tipo){
 
           </div>
 
+
           <div class="meta">
 
-            ${ciudad}
+            ${
+              ciudad
+                ? ciudad
+                : ""
+            }
 
           </div>
 
         </div>
+
 
       </div>
 
@@ -1290,9 +1578,15 @@ function crearPartidoHTML(partido,tipo){
    MOSTRAR PARTIDOS
 ========================================================== */
 
-function mostrarPartidos(lista,tipo,titulo){
+function mostrarPartidos(
+  lista,
+  tipo,
+  titulo
+){
 
-  pageTitle.textContent = titulo;
+  pageTitle.textContent =
+    titulo;
+
 
   if(
     !Array.isArray(lista) ||
@@ -1303,9 +1597,10 @@ function mostrarPartidos(lista,tipo,titulo){
 
       <div class="card empty">
 
-        <div style="font-size:30px">
+        <div style="font-size:35px">
           ⚽
         </div>
+
 
         <div
           style="
@@ -1316,11 +1611,13 @@ function mostrarPartidos(lista,tipo,titulo){
 
         </div>
 
+
         <div
           class="notice"
           style="margin-top:6px">
 
-          No encontramos encuentros para esta sección.
+          No encontramos encuentros
+          para esta sección.
 
         </div>
 
@@ -1356,21 +1653,25 @@ function mostrarTabla(){
   pageTitle.textContent =
     "Tabla de posiciones";
 
-  const posiciones =
-    datosGlobales.posiciones;
 
-  if(
-    !Array.isArray(posiciones) ||
-    posiciones.length === 0
-  ){
+  const posiciones =
+    Array.isArray(
+      datosGlobales.posiciones
+    )
+      ? datosGlobales.posiciones
+      : [];
+
+
+  if(posiciones.length === 0){
 
     contenido.innerHTML = `
 
       <div class="card empty">
 
-        <div style="font-size:30px">
+        <div style="font-size:35px">
           🏆
         </div>
+
 
         <div
           style="
@@ -1381,11 +1682,13 @@ function mostrarTabla(){
 
         </div>
 
+
         <div
           class="notice"
           style="margin-top:6px">
 
-          La API no entregó posiciones en esta consulta.
+          La fuente deportiva no entregó
+          posiciones en esta consulta.
 
         </div>
 
@@ -1403,8 +1706,11 @@ function mostrarTabla(){
     <div class="card">
 
       <div class="league">
+
         🏆 Primera División de Chile · 2026
+
       </div>
+
 
       <div class="table-wrap">
 
@@ -1415,136 +1721,208 @@ function mostrarTabla(){
             <tr>
 
               <th>#</th>
+
               <th>Equipo</th>
+
               <th>PJ</th>
+
               <th>PG</th>
+
               <th>PE</th>
+
               <th>PP</th>
+
               <th>GF</th>
+
               <th>GC</th>
+
               <th>DG</th>
+
               <th>PTS</th>
 
             </tr>
 
           </thead>
 
+
           <tbody>
 
-            ${posiciones
-              .map(
-                (equipo,index) => {
+            ${
+              posiciones
+                .map(
+                  (equipo,index) => {
 
-                  const nombre =
-                    equipo.equipo ||
-                    equipo.strTeam ||
-                    equipo.team ||
-                    "Equipo";
+                    const nombre =
+                      escaparHTML(
+                        equipo.equipo ??
+                        equipo.strTeam ??
+                        equipo.team ??
+                        equipo.nombre ??
+                        "Equipo"
+                      );
 
-                  const escudo =
-                    equipo.escudo ||
-                    equipo.strBadge ||
-                    equipo.badge ||
-                    "";
 
-                  const posicion =
-                    equipo.posicion ??
-                    equipo.intRank ??
-                    index + 1;
+                    const escudoEquipo =
+                      equipo.escudo ??
+                      equipo.strBadge ??
+                      equipo.badge ??
+                      equipo.escudo_local ??
+                      "";
 
-                  return `
 
-                    <tr>
+                    const posicion =
+                      equipo.posicion ??
+                      equipo.intRank ??
+                      equipo.rank ??
+                      index + 1;
 
-                      <td class="position">
-                        ${posicion}
-                      </td>
 
-                      <td>
+                    const partidos =
+                      equipo.partidos ??
+                      equipo.played ??
+                      equipo.intPlayed ??
+                      0;
 
-                        <div class="table-team">
 
-                          ${
-                            escudo
-                            ? `
-                              <img
-                                class="table-logo"
-                                src="${escudo}"
-                                alt=""
-                                onerror="this.style.display='none'"
-                              >
-                            `
-                            : ""
-                          }
+                    const ganados =
+                      equipo.ganados ??
+                      equipo.wins ??
+                      equipo.intWin ??
+                      0;
 
-                          <span>
-                            ${nombre}
-                          </span>
 
-                        </div>
+                    const empatados =
+                      equipo.empatados ??
+                      equipo.draws ??
+                      equipo.intDraw ??
+                      0;
 
-                      </td>
 
-                      <td>
-                        ${equipo.partidos ??
-                          equipo.played ??
-                          equipo.intPlayed ??
-                          0}
-                      </td>
+                    const perdidos =
+                      equipo.perdidos ??
+                      equipo.losses ??
+                      equipo.intLoss ??
+                      0;
 
-                      <td>
-                        ${equipo.ganados ??
-                          equipo.wins ??
-                          equipo.intWin ??
-                          0}
-                      </td>
 
-                      <td>
-                        ${equipo.empatados ??
-                          equipo.draws ??
-                          equipo.intDraw ??
-                          0}
-                      </td>
+                    const golesFavor =
+                      equipo.goles_favor ??
+                      equipo.goalsFor ??
+                      equipo.intGoalsFor ??
+                      0;
 
-                      <td>
-                        ${equipo.perdidos ??
-                          equipo.losses ??
-                          equipo.intLoss ??
-                          0}
-                      </td>
 
-                      <td>
-                        ${equipo.goles_favor ??
-                          equipo.goalsFor ??
-                          0}
-                      </td>
+                    const golesContra =
+                      equipo.goles_contra ??
+                      equipo.goalsAgainst ??
+                      equipo.intGoalsAgainst ??
+                      0;
 
-                      <td>
-                        ${equipo.goles_contra ??
-                          equipo.goalsAgainst ??
-                          0}
-                      </td>
 
-                      <td>
-                        ${equipo.diferencia ??
-                          equipo.goalDifference ??
-                          0}
-                      </td>
+                    const diferencia =
+                      equipo.diferencia ??
+                      equipo.goalDifference ??
+                      equipo.intGoalDifference ??
+                      0;
 
-                      <td class="points-table">
-                        ${equipo.puntos ??
-                          equipo.points ??
-                          equipo.intPoints ??
-                          0}
-                      </td>
 
-                    </tr>
+                    const puntos =
+                      equipo.puntos ??
+                      equipo.points ??
+                      equipo.intPoints ??
+                      0;
 
-                  `;
 
-                }
-              )
-              .join("")}
+                    return `
+
+                      <tr>
+
+                        <td class="position">
+
+                          ${escaparHTML(posicion)}
+
+                        </td>
+
+
+                        <td>
+
+                          <div class="table-team">
+
+                            ${
+                              escudoEquipo
+                                ? `
+                                  <img
+                                    class="table-logo"
+                                    src="${escaparHTML(escudoEquipo)}"
+                                    alt=""
+                                    loading="lazy"
+                                    onerror="this.style.display='none'"
+                                  >
+                                `
+                                : ""
+                            }
+
+
+                            <span>
+
+                              ${nombre}
+
+                            </span>
+
+                          </div>
+
+                        </td>
+
+
+                        <td>
+                          ${escaparHTML(partidos)}
+                        </td>
+
+
+                        <td>
+                          ${escaparHTML(ganados)}
+                        </td>
+
+
+                        <td>
+                          ${escaparHTML(empatados)}
+                        </td>
+
+
+                        <td>
+                          ${escaparHTML(perdidos)}
+                        </td>
+
+
+                        <td>
+                          ${escaparHTML(golesFavor)}
+                        </td>
+
+
+                        <td>
+                          ${escaparHTML(golesContra)}
+                        </td>
+
+
+                        <td>
+                          ${escaparHTML(diferencia)}
+                        </td>
+
+
+                        <td class="points-table">
+
+                          ${escaparHTML(puntos)}
+
+                        </td>
+
+                      </tr>
+
+                    `;
+
+                  }
+                )
+                .join("")
+            }
 
           </tbody>
 
@@ -1560,7 +1938,7 @@ function mostrarTabla(){
 
 
 /* ==========================================================
-   CAMBIAR VISTA
+   MOSTRAR VISTA
 ========================================================== */
 
 function mostrarVista(){
@@ -1605,156 +1983,123 @@ function mostrarVista(){
 
 
 /* ==========================================================
-   NORMALIZAR DATOS
+   NORMALIZAR RESPUESTA DE LA API
 ========================================================== */
 
 function normalizarDatos(datos){
 
-  let partidos = [];
-
   /*
-    1. Si la API entrega "partidos", usamos eso.
+    La función de Supabase ya entrega
+    las listas separadas.
+
+    Por eso primero respetamos
+    exactamente esas listas.
   */
 
-  if(
+
+  const en_vivo =
+    Array.isArray(datos.en_vivo)
+      ? datos.en_vivo
+      : [];
+
+
+  const proximos =
+    Array.isArray(datos.proximos)
+      ? datos.proximos
+      : [];
+
+
+  const resultados =
+    Array.isArray(datos.resultados)
+      ? datos.resultados
+      : [];
+
+
+  const posiciones =
+    Array.isArray(datos.posiciones)
+      ? datos.posiciones
+      : [];
+
+
+  /*
+    Si también viene "partidos",
+    lo utilizamos.
+
+    Si no viene, juntamos las listas.
+  */
+
+  let partidos =
     Array.isArray(datos.partidos)
-  ){
+      ? datos.partidos
+      : [];
 
-    partidos =
-      datos.partidos;
-
-  }
-
-
-  /*
-    2. Si no hay "partidos", intentamos
-       recuperar las listas separadas.
-  */
 
   if(partidos.length === 0){
 
-    const grupos = [
-
-      datos.en_vivo,
-      datos.proximos,
-      datos.resultados
-
+    partidos = [
+      ...en_vivo,
+      ...proximos,
+      ...resultados
     ];
-
-    grupos.forEach(grupo => {
-
-      if(Array.isArray(grupo)){
-
-        partidos.push(...grupo);
-
-      }
-
-    });
 
   }
 
 
   /*
-    3. Eliminamos duplicados.
+    Eliminar duplicados
   */
 
-  const mapa = new Map();
+  const mapa =
+    new Map();
 
-  partidos.forEach(partido => {
 
-    const id =
-      partido.id_evento ||
-      partido.idEvent ||
-      `${obtenerLocal(partido)}-${obtenerVisitante(partido)}-${obtenerFecha(partido)}`;
+  partidos.forEach(
+    partido => {
 
-    mapa.set(id,partido);
+      const id =
+        partido.id_evento ??
+        partido.idEvent ??
+        (
+          String(
+            obtenerLocal(partido)
+          ) +
+          "-" +
+          String(
+            obtenerVisitante(partido)
+          ) +
+          "-" +
+          String(
+            obtenerFecha(partido)
+          )
+        );
 
-  });
+
+      mapa.set(
+        String(id),
+        partido
+      );
+
+    }
+  );
 
 
   partidos =
-    Array.from(mapa.values());
-
-
-  /*
-    4. Clasificamos automáticamente.
-  */
-
-  let en_vivo = [];
-  let proximos = [];
-  let resultados = [];
-
-
-  partidos.forEach(partido => {
-
-    if(esEnVivo(partido)){
-
-      en_vivo.push(partido);
-
-    }
-
-    else if(esFinalizado(partido)){
-
-      resultados.push(partido);
-
-    }
-
-    else if(esProximo(partido)){
-
-      proximos.push(partido);
-
-    }
-
-  });
-
-
-  /*
-    5. Si la API ya entregó listas válidas,
-       las respetamos.
-  */
-
-  if(
-    Array.isArray(datos.en_vivo) &&
-    datos.en_vivo.length > 0
-  ){
-
-    en_vivo =
-      datos.en_vivo;
-
-  }
-
-  if(
-    Array.isArray(datos.proximos) &&
-    datos.proximos.length > 0
-  ){
-
-    proximos =
-      datos.proximos;
-
-  }
-
-  if(
-    Array.isArray(datos.resultados) &&
-    datos.resultados.length > 0
-  ){
-
-    resultados =
-      datos.resultados;
-
-  }
+    Array.from(
+      mapa.values()
+    );
 
 
   return {
 
     partidos,
+
     en_vivo,
+
     proximos,
+
     resultados,
 
-    posiciones:
-      Array.isArray(datos.posiciones)
-      ? datos.posiciones
-      : []
+    posiciones
 
   };
 
@@ -1770,14 +2115,18 @@ function actualizarEstado(){
   const enVivo =
     datosGlobales.en_vivo.length;
 
+
   const proximos =
     datosGlobales.proximos.length;
+
 
   const resultados =
     datosGlobales.resultados.length;
 
+
   const posiciones =
     datosGlobales.posiciones.length;
+
 
   const partidos =
     datosGlobales.partidos.length;
@@ -1788,7 +2137,9 @@ function actualizarEstado(){
     statusText.textContent =
       "EN VIVO";
 
-    statusDot.classList.add("live");
+    statusDot.classList.add(
+      "live"
+    );
 
   }
 
@@ -1797,7 +2148,9 @@ function actualizarEstado(){
     statusText.textContent =
       "ACTUALIZADO";
 
-    statusDot.classList.remove("live");
+    statusDot.classList.remove(
+      "live"
+    );
 
   }
 
@@ -1818,7 +2171,9 @@ function actualizarEstado(){
 
       </strong>
 
-      <div style="margin-top:7px">
+
+      <div
+        style="margin-top:7px">
 
         Hay partidos disputándose ahora.
 
@@ -1833,8 +2188,10 @@ function actualizarEstado(){
     liveSide.innerHTML = `
 
       <span>
+
         No hay partidos en vivo
         en este momento.
+
       </span>
 
     `;
@@ -1845,7 +2202,7 @@ function actualizarEstado(){
 
 
 /* ==========================================================
-   CARGAR DATOS
+   CARGAR PARTIDOS
 ========================================================== */
 
 async function cargarPartidos(){
@@ -1853,7 +2210,9 @@ async function cargarPartidos(){
   contenido.innerHTML = `
 
     <div class="loading">
+
       ⚽ Consultando resultados...
+
     </div>
 
   `;
@@ -1862,8 +2221,15 @@ async function cargarPartidos(){
   statusText.textContent =
     "CONECTANDO...";
 
+
   statusDetails.textContent =
-    "Consultando TheSportsDB";
+    "Consultando fuente deportiva";
+
+
+  statusDot.classList.remove(
+    "error",
+    "live"
+  );
 
 
   try{
@@ -1880,8 +2246,11 @@ async function cargarPartidos(){
           },
 
           body:JSON.stringify({
+
             nombre:"100xdeporte"
+
           })
+
         }
       );
 
@@ -1905,7 +2274,12 @@ async function cargarPartidos(){
     );
 
 
-    if(!datos.ok){
+    /*
+      Verificamos que la función
+      haya respondido correctamente.
+    */
+
+    if(datos.ok !== true){
 
       throw new Error(
         datos.error ||
@@ -1916,18 +2290,8 @@ async function cargarPartidos(){
 
 
     /*
-      AQUÍ ESTÁ EL CAMBIO PRINCIPAL.
-
-      La página acepta tanto:
-
-      datos.partidos
-
-      como:
-
-      datos.en_vivo
-      datos.proximos
-      datos.resultados
-      datos.posiciones
+      Convertimos la respuesta
+      a nuestro formato.
     */
 
     datosGlobales =
@@ -1939,6 +2303,10 @@ async function cargarPartidos(){
       datosGlobales
     );
 
+
+    /*
+      Actualizamos la interfaz.
+    */
 
     actualizarEstado();
 
@@ -1958,8 +2326,14 @@ async function cargarPartidos(){
     statusText.textContent =
       "ERROR";
 
+
     statusDetails.textContent =
       "No se pudieron cargar los datos";
+
+
+    statusDot.classList.add(
+      "error"
+    );
 
 
     contenido.innerHTML = `
@@ -1967,15 +2341,22 @@ async function cargarPartidos(){
       <div class="card error">
 
         <strong>
-          ⚠️ No pudimos cargar los resultados
+
+          ⚠️ No pudimos cargar
+          los resultados
+
         </strong>
+
 
         <div
           style="margin-top:8px">
 
-          ${error.message}
+          ${escaparHTML(
+            error.message
+          )}
 
         </div>
+
 
         <button
           class="refresh"
@@ -1990,13 +2371,25 @@ async function cargarPartidos(){
 
     `;
 
+
+    liveSide.innerHTML = `
+
+      <span>
+
+        No se pudo conectar con
+        la fuente de resultados.
+
+      </span>
+
+    `;
+
   }
 
 }
 
 
 /* ==========================================================
-   BOTONES
+   BOTONES DE VISTA
 ========================================================== */
 
 document
@@ -2007,6 +2400,7 @@ document
       boton.addEventListener(
         "click",
         () => {
+
 
           document
             .querySelectorAll(".filter")
@@ -2047,15 +2441,16 @@ refreshBtn.addEventListener(
 
 
 /* ==========================================================
-   INICIO
+   CARGA INICIAL
 ========================================================== */
 
 cargarPartidos();
 
 
-/*
-  Actualización automática cada 2 minutos.
-*/
+/* ==========================================================
+   ACTUALIZACIÓN AUTOMÁTICA
+   Cada 2 minutos
+========================================================== */
 
 setInterval(
   cargarPartidos,
