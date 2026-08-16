@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="theme-color" content="#07101d">
 
 <title>100XDeporte | Resultados</title>
@@ -171,24 +170,6 @@ button{
   font-size:23px;
 }
 
-.date{
-  color:var(--green);
-  font-weight:800;
-  text-align:right;
-}
-
-.section-title{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:22px 0 12px;
-  font-size:18px;
-}
-
-.section-title:first-child{
-  margin-top:0;
-}
-
 .card{
   background:
     linear-gradient(
@@ -235,26 +216,21 @@ button{
   text-align:right;
 }
 
-.team-logo{
-  width:32px;
-  height:32px;
-  object-fit:contain;
-  vertical-align:middle;
-  margin-right:7px;
-}
-
-.team.right .team-logo{
-  margin-right:0;
-  margin-left:7px;
-}
-
 .team-name{
   display:flex;
   align-items:center;
+  gap:7px;
 }
 
 .team.right .team-name{
   justify-content:flex-end;
+}
+
+.team-logo{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+  flex:none;
 }
 
 .score{
@@ -263,14 +239,6 @@ button{
   color:var(--green);
   white-space:nowrap;
   text-align:center;
-}
-
-.score small{
-  font-size:11px;
-  color:var(--muted);
-  display:block;
-  text-align:center;
-  margin-top:3px;
 }
 
 .state{
@@ -298,7 +266,7 @@ button{
 .empty{
   text-align:center;
   color:var(--muted);
-  padding:25px 15px;
+  padding:30px 15px;
 }
 
 .loading{
@@ -310,6 +278,20 @@ button{
 .error{
   border-color:var(--red);
   color:#ff9aaa;
+}
+
+.refresh{
+  border:1px solid var(--green);
+  background:rgba(168,255,0,.08);
+  color:var(--green);
+  border-radius:9px;
+  padding:8px 12px;
+  cursor:pointer;
+  font-weight:800;
+}
+
+.refresh:hover{
+  background:rgba(168,255,0,.16);
 }
 
 .table-wrap{
@@ -420,18 +402,12 @@ button{
   line-height:1.5;
 }
 
-.refresh{
-  border:1px solid var(--green);
-  background:rgba(168,255,0,.08);
-  color:var(--green);
-  border-radius:9px;
-  padding:8px 12px;
-  cursor:pointer;
-  font-weight:800;
-}
-
-.refresh:hover{
-  background:rgba(168,255,0,.16);
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:22px 0 12px;
+  font-size:18px;
 }
 
 @media(max-width:850px){
@@ -549,8 +525,6 @@ button{
 
 <main class="wrap">
 
-  <!-- ESTADO GENERAL -->
-
   <div class="status">
 
     <i class="dot" id="statusDot"></i>
@@ -560,37 +534,27 @@ button{
     </b>
 
     <span id="statusDetails">
-      Consultando resultados
+      Consultando resultados...
     </span>
 
   </div>
 
 
-  <!-- FILTROS -->
-
   <div class="filters">
 
-    <button
-      class="filter active"
-      data-view="resultados">
+    <button class="filter active" data-view="resultados">
       🟢 Resultados
     </button>
 
-    <button
-      class="filter"
-      data-view="proximos">
+    <button class="filter" data-view="proximos">
       📅 Próximos
     </button>
 
-    <button
-      class="filter"
-      data-view="tabla">
+    <button class="filter" data-view="tabla">
       🏆 Tabla
     </button>
 
-    <button
-      class="filter"
-      data-view="envivo">
+    <button class="filter" data-view="envivo">
       🔴 En vivo
     </button>
 
@@ -604,6 +568,7 @@ button{
       <div class="toolbar">
 
         <div>
+
           <h1 id="pageTitle">
             Resultados
           </h1>
@@ -611,20 +576,23 @@ button{
           <div
             class="notice"
             style="margin-top:5px">
+
             Chile · Primera División · 2026
+
           </div>
+
         </div>
 
         <button
           class="refresh"
           id="refreshBtn">
+
           ↻ Actualizar
+
         </button>
 
       </div>
 
-
-      <!-- CONTENIDO DINÁMICO -->
 
       <div id="contenido">
 
@@ -634,11 +602,8 @@ button{
 
       </div>
 
-
     </div>
 
-
-    <!-- LATERAL -->
 
     <aside class="side">
 
@@ -651,7 +616,9 @@ button{
         <div
           id="liveSide"
           class="notice">
+
           Comprobando partidos...
+
         </div>
 
       </div>
@@ -664,6 +631,7 @@ button{
         </h2>
 
         <div class="mission">
+
           <b>
             Visitar 100XDeporte
           </b>
@@ -671,9 +639,11 @@ button{
           <span>
             +10 XP
           </span>
+
         </div>
 
         <div class="mission">
+
           <b>
             Revisar resultados
           </b>
@@ -681,9 +651,11 @@ button{
           <span>
             +10 XP
           </span>
+
         </div>
 
         <div class="mission">
+
           <b>
             Explorar deportes
           </b>
@@ -691,6 +663,7 @@ button{
           <span>
             +10 XP
           </span>
+
         </div>
 
         <div class="progress">
@@ -715,17 +688,20 @@ button{
           font-size:28px;
           font-weight:900;
           color:var(--green)">
+
           3 días
+
         </div>
 
         <div
           class="notice"
           style="margin-top:5px">
+
           Sigue participando para mantener tu racha.
+
         </div>
 
       </div>
-
 
     </aside>
 
@@ -736,11 +712,9 @@ button{
 
 <script>
 
-/*
-==========================================================
-CONFIGURACIÓN
-==========================================================
-*/
+/* ==========================================================
+   CONFIGURACIÓN
+========================================================== */
 
 const API_URL =
   "https://wdnrwapmyvrmqhzsxmt.supabase.co/functions/v1/partidos-chile";
@@ -749,12 +723,10 @@ const API_URL =
 let datosGlobales = {
 
   en_vivo: [],
-
   proximos: [],
-
   resultados: [],
-
-  posiciones: []
+  posiciones: [],
+  partidos: []
 
 };
 
@@ -762,11 +734,9 @@ let datosGlobales = {
 let vistaActual = "resultados";
 
 
-/*
-==========================================================
-ELEMENTOS
-==========================================================
-*/
+/* ==========================================================
+   ELEMENTOS
+========================================================== */
 
 const contenido =
   document.getElementById("contenido");
@@ -790,11 +760,44 @@ const refreshBtn =
   document.getElementById("refreshBtn");
 
 
-/*
-==========================================================
-FORMATEAR FECHA
-==========================================================
-*/
+/* ==========================================================
+   FECHA
+========================================================== */
+
+function obtenerFecha(partido){
+
+  return (
+    partido.fecha ||
+    partido.dateEvent ||
+    partido.fecha_evento ||
+    null
+  );
+
+}
+
+
+/* ==========================================================
+   HORA
+========================================================== */
+
+function obtenerHora(partido){
+
+  if(partido.hora){
+    return partido.hora;
+  }
+
+  if(partido.strTime){
+    return partido.strTime;
+  }
+
+  return "";
+
+}
+
+
+/* ==========================================================
+   FORMATEAR FECHA
+========================================================== */
 
 function formatearFecha(fecha){
 
@@ -802,8 +805,7 @@ function formatearFecha(fecha){
     return "Fecha no disponible";
   }
 
-  const d =
-    new Date(fecha);
+  const d = new Date(fecha);
 
   if(Number.isNaN(d.getTime())){
     return fecha;
@@ -821,20 +823,25 @@ function formatearFecha(fecha){
 }
 
 
-/*
-==========================================================
-FORMATEAR HORA
-==========================================================
-*/
+/* ==========================================================
+   FORMATEAR HORA
+========================================================== */
 
-function formatearHora(fecha){
+function formatearHora(partido){
+
+  const hora = obtenerHora(partido);
+
+  if(hora){
+    return hora.slice(0,5);
+  }
+
+  const fecha = obtenerFecha(partido);
 
   if(!fecha){
     return "";
   }
 
-  const d =
-    new Date(fecha);
+  const d = new Date(fecha);
 
   if(Number.isNaN(d.getTime())){
     return "";
@@ -851,11 +858,233 @@ function formatearHora(fecha){
 }
 
 
-/*
-==========================================================
-ESCUDO
-==========================================================
-*/
+/* ==========================================================
+   OBTENER EQUIPO LOCAL
+========================================================== */
+
+function obtenerLocal(partido){
+
+  return (
+    partido.local ||
+    partido.strHomeTeam ||
+    partido.homeTeam ||
+    "Equipo local"
+  );
+
+}
+
+
+/* ==========================================================
+   OBTENER EQUIPO VISITANTE
+========================================================== */
+
+function obtenerVisitante(partido){
+
+  return (
+    partido.visitante ||
+    partido.strAwayTeam ||
+    partido.awayTeam ||
+    "Equipo visitante"
+  );
+
+}
+
+
+/* ==========================================================
+   OBTENER ESCUDO LOCAL
+========================================================== */
+
+function obtenerEscudoLocal(partido){
+
+  return (
+    partido.escudo_local ||
+    partido.strHomeTeamBadge ||
+    partido.homeBadge ||
+    ""
+  );
+
+}
+
+
+/* ==========================================================
+   OBTENER ESCUDO VISITANTE
+========================================================== */
+
+function obtenerEscudoVisitante(partido){
+
+  return (
+    partido.escudo_visitante ||
+    partido.strAwayTeamBadge ||
+    partido.awayBadge ||
+    ""
+  );
+
+}
+
+
+/* ==========================================================
+   OBTENER ESTADO
+========================================================== */
+
+function obtenerEstado(partido){
+
+  return String(
+    partido.estado ||
+    partido.strStatus ||
+    partido.status ||
+    ""
+  ).toLowerCase().trim();
+
+}
+
+
+/* ==========================================================
+   SABER SI ESTÁ EN VIVO
+========================================================== */
+
+function esEnVivo(partido){
+
+  const estado = obtenerEstado(partido);
+
+  const estadosVivo = [
+    "live",
+    "en vivo",
+    "in play",
+    "1h",
+    "2h",
+    "ht",
+    "halftime",
+    "first half",
+    "second half"
+  ];
+
+  if(
+    estadosVivo.some(
+      x => estado.includes(x)
+    )
+  ){
+    return true;
+  }
+
+  return (
+    partido.en_vivo === true ||
+    partido.live === true
+  );
+
+}
+
+
+/* ==========================================================
+   SABER SI FINALIZÓ
+========================================================== */
+
+function esFinalizado(partido){
+
+  if(esEnVivo(partido)){
+    return false;
+  }
+
+  const estado = obtenerEstado(partido);
+
+  const estadosFinalizados = [
+    "finished",
+    "finalizado",
+    "final",
+    "ft",
+    "after",
+    "ended",
+    "match finished"
+  ];
+
+  if(
+    estadosFinalizados.some(
+      x => estado.includes(x)
+    )
+  ){
+    return true;
+  }
+
+  const gl = partido.goles_local;
+  const gv = partido.goles_visitante;
+
+  const tieneMarcador =
+    gl !== null &&
+    gl !== undefined &&
+    gv !== null &&
+    gv !== undefined &&
+    gl !== "" &&
+    gv !== "";
+
+  if(tieneMarcador){
+
+    const fecha = obtenerFecha(partido);
+
+    if(fecha){
+
+      const d = new Date(fecha);
+
+      if(!Number.isNaN(d.getTime())){
+        return d.getTime() < Date.now();
+      }
+
+    }
+
+  }
+
+  return false;
+
+}
+
+
+/* ==========================================================
+   SABER SI ES PRÓXIMO
+========================================================== */
+
+function esProximo(partido){
+
+  if(esEnVivo(partido)){
+    return false;
+  }
+
+  if(esFinalizado(partido)){
+    return false;
+  }
+
+  const estado = obtenerEstado(partido);
+
+  if(
+    estado.includes("scheduled") ||
+    estado.includes("programado") ||
+    estado.includes("not started") ||
+    estado.includes("ns") ||
+    estado === ""
+  ){
+    return true;
+  }
+
+  const fecha = obtenerFecha(partido);
+
+  if(fecha){
+
+    const d = new Date(fecha);
+
+    if(
+      !Number.isNaN(d.getTime()) &&
+      d.getTime() >= Date.now()
+    ){
+      return true;
+    }
+
+  }
+
+  return false;
+
+}
+
+
+/* ==========================================================
+   ESCUDO HTML
+========================================================== */
 
 function escudo(url){
 
@@ -875,84 +1104,88 @@ function escudo(url){
 }
 
 
-/*
-==========================================================
-CREAR TARJETA DE PARTIDO
-==========================================================
-*/
+/* ==========================================================
+   CREAR PARTIDO
+========================================================== */
 
-function crearPartidoHTML(
-  partido,
-  tipo
-){
+function crearPartidoHTML(partido,tipo){
 
   const local =
-    partido.local ||
-    "Equipo local";
+    obtenerLocal(partido);
 
   const visitante =
-    partido.visitante ||
-    "Equipo visitante";
+    obtenerVisitante(partido);
+
+  const escudoLocal =
+    obtenerEscudoLocal(partido);
+
+  const escudoVisitante =
+    obtenerEscudoVisitante(partido);
 
   const golesLocal =
-    partido.goles_local;
+    partido.goles_local ??
+    partido.intHomeScore ??
+    null;
 
   const golesVisitante =
-    partido.goles_visitante;
+    partido.goles_visitante ??
+    partido.intAwayScore ??
+    null;
 
-  let estado =
-    partido.estado ||
-    "Programado";
+  const fecha =
+    obtenerFecha(partido);
 
+  const hora =
+    formatearHora(partido);
+
+  let textoEstado = "";
   let claseEstado = "";
-
-  let textoEstado =
-    estado.toUpperCase();
-
 
   if(tipo === "envivo"){
 
+    textoEstado = "🔴 EN VIVO";
     claseEstado = "live";
-
-    textoEstado =
-      "🔴 EN VIVO";
 
   }
   else if(tipo === "proximos"){
 
+    textoEstado = "PRÓXIMO";
     claseEstado = "scheduled";
 
-    textoEstado =
-      "PRÓXIMO";
-
   }
-  else if(tipo === "resultados"){
+  else{
 
     textoEstado = "FINALIZADO";
 
   }
 
 
-  const marcador =
+  let marcador = "-";
+
+  if(
     golesLocal !== null &&
     golesLocal !== undefined &&
+    golesLocal !== "" &&
     golesVisitante !== null &&
-    golesVisitante !== undefined
+    golesVisitante !== undefined &&
+    golesVisitante !== ""
+  ){
 
-      ? `${golesLocal} - ${golesVisitante}`
+    marcador =
+      `${golesLocal} - ${golesVisitante}`;
 
-      : "-";
+  }
 
 
-  const fecha =
-    formatearFecha(
-      partido.fecha
-    );
+  const estadio =
+    partido.estadio ||
+    partido.strVenue ||
+    "";
 
-  const hora =
-    formatearHora(
-      partido.fecha
-    );
+  const ciudad =
+    partido.ciudad ||
+    partido.strCity ||
+    "";
 
 
   return `
@@ -969,17 +1202,22 @@ function crearPartidoHTML(
 
           <div class="team-name">
 
-            ${escudo(
-              partido.escudo_local
-            )}
+            ${escudo(escudoLocal)}
 
-            ${local}
+            <span>
+              ${local}
+            </span>
 
           </div>
 
           <div class="meta">
-            ${partido.ciudad || ""}
-            ${partido.estadio ? " · " + partido.estadio : ""}
+
+            ${ciudad}
+
+            ${estadio
+              ? " · " + estadio
+              : ""}
+
           </div>
 
         </div>
@@ -1000,18 +1238,21 @@ function crearPartidoHTML(
 
           </div>
 
-          <small
+          <div
             style="
             display:block;
             text-align:center;
             color:var(--muted);
+            font-size:11px;
             margin-top:4px">
 
-            ${fecha}
+            ${formatearFecha(fecha)}
 
-            ${hora ? " · " + hora : ""}
+            ${hora
+              ? " · " + hora
+              : ""}
 
-          </small>
+          </div>
 
         </div>
 
@@ -1020,17 +1261,17 @@ function crearPartidoHTML(
 
           <div class="team-name">
 
-            ${visitante}
+            <span>
+              ${visitante}
+            </span>
 
-            ${escudo(
-              partido.escudo_visitante
-            )}
+            ${escudo(escudoVisitante)}
 
           </div>
 
           <div class="meta">
 
-            ${partido.ciudad || ""}
+            ${ciudad}
 
           </div>
 
@@ -1045,23 +1286,18 @@ function crearPartidoHTML(
 }
 
 
-/*
-==========================================================
-MOSTRAR PARTIDOS
-==========================================================
-*/
+/* ==========================================================
+   MOSTRAR PARTIDOS
+========================================================== */
 
-function mostrarPartidos(
-  lista,
-  tipo,
-  titulo
-){
+function mostrarPartidos(lista,tipo,titulo){
 
-  pageTitle.textContent =
-    titulo;
+  pageTitle.textContent = titulo;
 
-
-  if(!lista || lista.length === 0){
+  if(
+    !Array.isArray(lista) ||
+    lista.length === 0
+  ){
 
     contenido.innerHTML = `
 
@@ -1084,8 +1320,7 @@ function mostrarPartidos(
           class="notice"
           style="margin-top:6px">
 
-          La fuente deportiva no entregó
-          encuentros para esta sección.
+          No encontramos encuentros para esta sección.
 
         </div>
 
@@ -1112,24 +1347,20 @@ function mostrarPartidos(
 }
 
 
-/*
-==========================================================
-MOSTRAR TABLA
-==========================================================
-*/
+/* ==========================================================
+   MOSTRAR TABLA
+========================================================== */
 
 function mostrarTabla(){
 
   pageTitle.textContent =
     "Tabla de posiciones";
 
-
   const posiciones =
     datosGlobales.posiciones;
 
-
   if(
-    !posiciones ||
+    !Array.isArray(posiciones) ||
     posiciones.length === 0
   ){
 
@@ -1137,7 +1368,9 @@ function mostrarTabla(){
 
       <div class="card empty">
 
-        🏆
+        <div style="font-size:30px">
+          🏆
+        </div>
 
         <div
           style="
@@ -1145,6 +1378,14 @@ function mostrarTabla(){
           font-weight:800">
 
           No hay tabla disponible.
+
+        </div>
+
+        <div
+          class="notice"
+          style="margin-top:6px">
+
+          La API no entregó posiciones en esta consulta.
 
         </div>
 
@@ -1174,23 +1415,14 @@ function mostrarTabla(){
             <tr>
 
               <th>#</th>
-
               <th>Equipo</th>
-
               <th>PJ</th>
-
               <th>PG</th>
-
               <th>PE</th>
-
               <th>PP</th>
-
               <th>GF</th>
-
               <th>GC</th>
-
               <th>DG</th>
-
               <th>PTS</th>
 
             </tr>
@@ -1201,77 +1433,116 @@ function mostrarTabla(){
 
             ${posiciones
               .map(
-                equipo => `
+                (equipo,index) => {
 
-                <tr>
+                  const nombre =
+                    equipo.equipo ||
+                    equipo.strTeam ||
+                    equipo.team ||
+                    "Equipo";
 
-                  <td class="position">
-                    ${equipo.posicion ?? "-"}
-                  </td>
+                  const escudo =
+                    equipo.escudo ||
+                    equipo.strBadge ||
+                    equipo.badge ||
+                    "";
 
-                  <td>
+                  const posicion =
+                    equipo.posicion ??
+                    equipo.intRank ??
+                    index + 1;
 
-                    <div class="table-team">
+                  return `
 
-                      ${
-                        equipo.escudo
-                          ? `
-                            <img
-                              class="table-logo"
-                              src="${equipo.escudo}"
-                              alt=""
-                              onerror="this.style.display='none'"
-                            >
-                          `
-                          : ""
-                      }
+                    <tr>
 
-                      <span>
-                        ${
-                          equipo.equipo ||
-                          "Equipo"
-                        }
-                      </span>
+                      <td class="position">
+                        ${posicion}
+                      </td>
 
-                    </div>
+                      <td>
 
-                  </td>
+                        <div class="table-team">
 
-                  <td>
-                    ${equipo.partidos ?? 0}
-                  </td>
+                          ${
+                            escudo
+                            ? `
+                              <img
+                                class="table-logo"
+                                src="${escudo}"
+                                alt=""
+                                onerror="this.style.display='none'"
+                              >
+                            `
+                            : ""
+                          }
 
-                  <td>
-                    ${equipo.ganados ?? 0}
-                  </td>
+                          <span>
+                            ${nombre}
+                          </span>
 
-                  <td>
-                    ${equipo.empatados ?? 0}
-                  </td>
+                        </div>
 
-                  <td>
-                    ${equipo.perdidos ?? 0}
-                  </td>
+                      </td>
 
-                  <td>
-                    ${equipo.goles_favor ?? 0}
-                  </td>
+                      <td>
+                        ${equipo.partidos ??
+                          equipo.played ??
+                          equipo.intPlayed ??
+                          0}
+                      </td>
 
-                  <td>
-                    ${equipo.goles_contra ?? 0}
-                  </td>
+                      <td>
+                        ${equipo.ganados ??
+                          equipo.wins ??
+                          equipo.intWin ??
+                          0}
+                      </td>
 
-                  <td>
-                    ${equipo.diferencia ?? 0}
-                  </td>
+                      <td>
+                        ${equipo.empatados ??
+                          equipo.draws ??
+                          equipo.intDraw ??
+                          0}
+                      </td>
 
-                  <td class="points-table">
-                    ${equipo.puntos ?? 0}
-                  </td>
+                      <td>
+                        ${equipo.perdidos ??
+                          equipo.losses ??
+                          equipo.intLoss ??
+                          0}
+                      </td>
 
-                </tr>
+                      <td>
+                        ${equipo.goles_favor ??
+                          equipo.goalsFor ??
+                          0}
+                      </td>
 
-              `
+                      <td>
+                        ${equipo.goles_contra ??
+                          equipo.goalsAgainst ??
+                          0}
+                      </td>
+
+                      <td>
+                        ${equipo.diferencia ??
+                          equipo.goalDifference ??
+                          0}
+                      </td>
+
+                      <td class="points-table">
+                        ${equipo.puntos ??
+                          equipo.points ??
+                          equipo.intPoints ??
+                          0}
+                      </td>
+
+                    </tr>
+
+                  `;
+
+                }
               )
               .join("")}
 
@@ -1288,11 +1559,9 @@ function mostrarTabla(){
 }
 
 
-/*
-==========================================================
-CAMBIAR VISTA
-==========================================================
-*/
+/* ==========================================================
+   CAMBIAR VISTA
+========================================================== */
 
 function mostrarVista(){
 
@@ -1335,11 +1604,166 @@ function mostrarVista(){
 }
 
 
-/*
-==========================================================
-ACTUALIZAR ESTADO
-==========================================================
-*/
+/* ==========================================================
+   NORMALIZAR DATOS
+========================================================== */
+
+function normalizarDatos(datos){
+
+  let partidos = [];
+
+  /*
+    1. Si la API entrega "partidos", usamos eso.
+  */
+
+  if(
+    Array.isArray(datos.partidos)
+  ){
+
+    partidos =
+      datos.partidos;
+
+  }
+
+
+  /*
+    2. Si no hay "partidos", intentamos
+       recuperar las listas separadas.
+  */
+
+  if(partidos.length === 0){
+
+    const grupos = [
+
+      datos.en_vivo,
+      datos.proximos,
+      datos.resultados
+
+    ];
+
+    grupos.forEach(grupo => {
+
+      if(Array.isArray(grupo)){
+
+        partidos.push(...grupo);
+
+      }
+
+    });
+
+  }
+
+
+  /*
+    3. Eliminamos duplicados.
+  */
+
+  const mapa = new Map();
+
+  partidos.forEach(partido => {
+
+    const id =
+      partido.id_evento ||
+      partido.idEvent ||
+      `${obtenerLocal(partido)}-${obtenerVisitante(partido)}-${obtenerFecha(partido)}`;
+
+    mapa.set(id,partido);
+
+  });
+
+
+  partidos =
+    Array.from(mapa.values());
+
+
+  /*
+    4. Clasificamos automáticamente.
+  */
+
+  let en_vivo = [];
+  let proximos = [];
+  let resultados = [];
+
+
+  partidos.forEach(partido => {
+
+    if(esEnVivo(partido)){
+
+      en_vivo.push(partido);
+
+    }
+
+    else if(esFinalizado(partido)){
+
+      resultados.push(partido);
+
+    }
+
+    else if(esProximo(partido)){
+
+      proximos.push(partido);
+
+    }
+
+  });
+
+
+  /*
+    5. Si la API ya entregó listas válidas,
+       las respetamos.
+  */
+
+  if(
+    Array.isArray(datos.en_vivo) &&
+    datos.en_vivo.length > 0
+  ){
+
+    en_vivo =
+      datos.en_vivo;
+
+  }
+
+  if(
+    Array.isArray(datos.proximos) &&
+    datos.proximos.length > 0
+  ){
+
+    proximos =
+      datos.proximos;
+
+  }
+
+  if(
+    Array.isArray(datos.resultados) &&
+    datos.resultados.length > 0
+  ){
+
+    resultados =
+      datos.resultados;
+
+  }
+
+
+  return {
+
+    partidos,
+    en_vivo,
+    proximos,
+    resultados,
+
+    posiciones:
+      Array.isArray(datos.posiciones)
+      ? datos.posiciones
+      : []
+
+  };
+
+}
+
+
+/* ==========================================================
+   ACTUALIZAR ESTADO
+========================================================== */
 
 function actualizarEstado(){
 
@@ -1355,32 +1779,31 @@ function actualizarEstado(){
   const posiciones =
     datosGlobales.posiciones.length;
 
+  const partidos =
+    datosGlobales.partidos.length;
+
 
   if(enVivo > 0){
 
     statusText.textContent =
       "EN VIVO";
 
-    statusDot.classList.add(
-      "live"
-    );
+    statusDot.classList.add("live");
 
   }
+
   else{
 
     statusText.textContent =
       "ACTUALIZADO";
 
-    statusDot.classList.remove(
-      "live"
-    );
+    statusDot.classList.remove("live");
 
   }
 
 
   statusDetails.textContent =
-    `${enVivo} en vivo · ${resultados} resultados · ${proximos} próximos · ${posiciones} equipos`;
-
+    `${enVivo} en vivo · ${resultados} resultados · ${proximos} próximos · ${partidos} partidos`;
 
 
   if(enVivo > 0){
@@ -1395,18 +1818,16 @@ function actualizarEstado(){
 
       </strong>
 
-      <div
-        style="margin-top:7px">
+      <div style="margin-top:7px">
 
-        Entra en
-        <b>En vivo</b>
-        para verlos.
+        Hay partidos disputándose ahora.
 
       </div>
 
     `;
 
   }
+
   else{
 
     liveSide.innerHTML = `
@@ -1423,23 +1844,26 @@ function actualizarEstado(){
 }
 
 
-/*
-==========================================================
-CARGAR DATOS
-==========================================================
-*/
+/* ==========================================================
+   CARGAR DATOS
+========================================================== */
 
 async function cargarPartidos(){
 
   contenido.innerHTML = `
 
     <div class="loading">
-
       ⚽ Consultando resultados...
-
     </div>
 
   `;
+
+
+  statusText.textContent =
+    "CONECTANDO...";
+
+  statusDetails.textContent =
+    "Consultando TheSportsDB";
 
 
   try{
@@ -1476,7 +1900,7 @@ async function cargarPartidos(){
 
 
     console.log(
-      "Datos recibidos:",
+      "Respuesta completa de Supabase:",
       datos
     );
 
@@ -1492,42 +1916,28 @@ async function cargarPartidos(){
 
 
     /*
-     * AQUÍ ESTÁ EL CAMBIO IMPORTANTE:
-     *
-     * Ya NO buscamos datos.partidos.
-     */
+      AQUÍ ESTÁ EL CAMBIO PRINCIPAL.
 
-    datosGlobales = {
+      La página acepta tanto:
 
-      en_vivo:
-        Array.isArray(
-          datos.en_vivo
-        )
-          ? datos.en_vivo
-          : [],
+      datos.partidos
 
-      proximos:
-        Array.isArray(
-          datos.proximos
-        )
-          ? datos.proximos
-          : [],
+      como:
 
-      resultados:
-        Array.isArray(
-          datos.resultados
-        )
-          ? datos.resultados
-          : [],
+      datos.en_vivo
+      datos.proximos
+      datos.resultados
+      datos.posiciones
+    */
 
-      posiciones:
-        Array.isArray(
-          datos.posiciones
-        )
-          ? datos.posiciones
-          : []
+    datosGlobales =
+      normalizarDatos(datos);
 
-    };
+
+    console.log(
+      "Datos normalizados:",
+      datosGlobales
+    );
 
 
     actualizarEstado();
@@ -1536,10 +1946,11 @@ async function cargarPartidos(){
 
 
   }
+
   catch(error){
 
     console.error(
-      "Error:",
+      "Error cargando partidos:",
       error
     );
 
@@ -1584,16 +1995,12 @@ async function cargarPartidos(){
 }
 
 
-/*
-==========================================================
-BOTONES DE VISTA
-==========================================================
-*/
+/* ==========================================================
+   BOTONES
+========================================================== */
 
 document
-  .querySelectorAll(
-    ".filter"
-  )
+  .querySelectorAll(".filter")
   .forEach(
     boton => {
 
@@ -1602,9 +2009,7 @@ document
         () => {
 
           document
-            .querySelectorAll(
-              ".filter"
-            )
+            .querySelectorAll(".filter")
             .forEach(
               b =>
                 b.classList.remove(
@@ -1631,11 +2036,9 @@ document
   );
 
 
-/*
-==========================================================
-BOTÓN ACTUALIZAR
-==========================================================
-*/
+/* ==========================================================
+   BOTÓN ACTUALIZAR
+========================================================== */
 
 refreshBtn.addEventListener(
   "click",
@@ -1643,13 +2046,21 @@ refreshBtn.addEventListener(
 );
 
 
-/*
-==========================================================
-INICIO
-==========================================================
-*/
+/* ==========================================================
+   INICIO
+========================================================== */
 
 cargarPartidos();
+
+
+/*
+  Actualización automática cada 2 minutos.
+*/
+
+setInterval(
+  cargarPartidos,
+  120000
+);
 
 </script>
 
